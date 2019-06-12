@@ -1,31 +1,33 @@
 import React from 'react';
-
+import Navbar from './component/navbar/navbar';
 
 class App extends React.Component{
-  state={
-    name:'hao',
-    age: 20
-  }
-  handleClick = (e) =>{
-    // console.log(e.target);
-    this.setState({
-      name:'HelloWorld',
-      time: '10'
-    });
-  }
-  handleSubmit = (e) =>{
-    e.preventDefault();
-    console.log(this.state);
-  }
-  handleChange =(e) =>{
-    this.setState({
-      name: e.target.value
-    });
-  }
+  // state={
+  //   name:'hao',
+  //   age: 20
+  // }
+  // handleClick = (e) =>{
+  //   // console.log(e.target);
+  //   this.setState({
+  //     name:'HelloWorld',
+  //     time: '10'
+  //   });
+  // }
+  // handleSubmit = (e) =>{
+  //   e.preventDefault();
+  //   console.log(this.state);
+  // }
+  // handleChange =(e) =>{
+  //   this.setState({
+  //     name: e.target.value
+  //   });
+  // }
   render(){
     return (
       <div className="App">
-        <header className="App-header">
+        <Navbar />
+        {/* <header className="App-header">
+          <Navbar />
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
@@ -44,7 +46,7 @@ class App extends React.Component{
             <input type="text" onChange={this.handleChange}></input>
             <button>Submit</button>
           </form>
-        </header>
+        </header> */}
       </div>
     );
   }
