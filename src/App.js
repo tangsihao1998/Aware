@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from './component/navbar/navbar';
-
+import Navbar from './component/layouts/navbar/navbar';
+import Footer from './component/footer/footer';
 class App extends React.Component{
   // state={
   //   name:'hao',
@@ -25,7 +25,13 @@ class App extends React.Component{
   render(){
     return (
       <div className="App">
-        <Navbar />
+        <header className="">
+          <Navbar />
+        </header>
+        <footer className="">
+          <Footer />
+        </footer>
+       
         {/* <header className="App-header">
           <Navbar />
           <p>

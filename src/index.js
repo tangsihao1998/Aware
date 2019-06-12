@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSearch,faShoppingCart, faArrowDown } from '@fortawesome/free-solid-svg-icons'
+// import { library } from '@fortawesome/fontawesome-svg-core'
+// import { faSearch, faShoppingCart,faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faSearch,faShoppingCart, faArrowDown);
+// library.add(faSearch,faShoppingCart,faChevronDown);
 //import 'bootstrap/dist/css/bootstrap.css';
 ReactDOM.render(<App />, document.getElementById('root'));
 
