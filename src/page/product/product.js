@@ -48,7 +48,7 @@ class product extends React.Component{
                             {/* Product component */}
                             <div className="product">
                                 {/* Image  */}
-                                <img src="" class="image123"/>
+                                <img src="" class="image12321321321321"/>
                                 {/* Button quick shop component*/}
                                 <button className="quickshop">+Quick Shop</button>
                                 {/* Sold out component*/}
