@@ -16,7 +16,7 @@ class navbar extends Component {
                                 <img className="Logo" src="images/Logo/logo.png" srcSet="images/Logo/logo@2x.png 2x,images/Logo/logo@3x.png 3x" 
                                     alt="Company's Logo"></img>
                             </div>
-                            {/* Login,Register and Cart */}
+                            {/* Split out Login,Register and Cart */}
                             <div className="right-side">
                                 <div className="LoginForm">
                                     <button className="Register">Register</button>
@@ -32,7 +32,7 @@ class navbar extends Component {
                     </div>
                     <div className="navbody">
                         {/* Hover and choose type */}
-                        {/* Component Dropdown */}
+                        {/* Split out Component Dropdown */}
                         <div className="item">
                             Men <i id="IconChev" class="fa fa-chevron-down" aria-hidden="true"></i>
                             <div className="dropdown">
@@ -91,7 +91,6 @@ class navbar extends Component {
                             </div>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         )

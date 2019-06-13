@@ -10,7 +10,7 @@ class footer extends Component {
                     <div><img className="Logo" src="images/Logo/logo.png" srcSet="images/Logo/logo@2x.png 2x,images/Logo/logo@3x.png 3x" 
                                     alt="Company's Logo"></img></div>
                     <div className="footer-menu">
-                        {/* Component anchor */}
+                        {/* Split out Component anchor */}
                         <div>Home</div>
                         <div>Products</div>
                         <div>Services</div>
@@ -26,9 +26,9 @@ class footer extends Component {
                 </div>
                 {/* Privacy & Options */}
                 <div className="footer2">
-                    {/* Component footermenu */}
+                    {/* Split out Component footermenu */}
                     <div className="footer-menu">
-                        {/* Component anchor */}
+                        {/* Split out Component anchor */}
                         <div>Home</div>
                         <div>Products</div>
                         <div>Services</div>
@@ -37,7 +37,7 @@ class footer extends Component {
                         <div>Contacts</div>
                     </div>
                     <div className="policy">
-                        {/* Component anchor */}
+                        {/* Split out Component anchor */}
                         <div>Privacy Policy</div>
                         <div>Term & Conditions</div>
                     </div>
