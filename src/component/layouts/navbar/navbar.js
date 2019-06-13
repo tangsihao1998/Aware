@@ -32,11 +32,66 @@ class navbar extends Component {
                     </div>
                     <div className="navbody">
                         {/* Hover and choose type */}
-                        <div>Men <i id="IconChev" class="fa fa-chevron-down" aria-hidden="true"></i></div>
-                        <div>Ladies <i id="IconChev" class="fa fa-chevron-down" aria-hidden="true"></i></div>
-                        <div>Girls <i id="IconChev" class="fa fa-chevron-down" aria-hidden="true"></i></div>
-                        <div>Boys <i id="IconChev" class="fa fa-chevron-down" aria-hidden="true"></i></div>
+                        {/* Component Dropdown */}
+                        <div className="item">
+                            Men <i id="IconChev" class="fa fa-chevron-down" aria-hidden="true"></i>
+                            <div className="dropdown">
+                                <div className="itemform">
+                                    <div>Tops</div>
+                                    <div>Bottoms</div>
+                                    <div>Dresses</div>
+                                    <div>Jackets</div>
+                                    <div>Shoes</div>
+                                    <div>Accesories</div>
+                                    <div>Sale</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="item">
+                            Ladies 
+                            <i id="IconChev" class="fa fa-chevron-down" aria-hidden="true"></i>
+                            <div className="dropdown">
+                                <div className="itemform">
+                                    <div>Tops</div>
+                                    <div>Bottoms</div>
+                                    <div>Dresses</div>
+                                    <div>Jackets</div>
+                                    <div>Shoes</div>
+                                    <div>Accesories</div>
+                                    <div>Sale</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="item">
+                            Girls <i id="IconChev" class="fa fa-chevron-down" aria-hidden="true"></i>
+                            <div className="dropdown">
+                                <div className="itemform">
+                                    <div>Tops</div>
+                                    <div>Bottoms</div>
+                                    <div>Dresses</div>
+                                    <div>Jackets</div>
+                                    <div>Shoes</div>
+                                    <div>Accesories</div>
+                                    <div>Sale</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="item">
+                            Boys <i id="IconChev" class="fa fa-chevron-down" aria-hidden="true"></i>
+                            <div className="dropdown">
+                                <div className="itemform">
+                                    <div>Tops</div>
+                                    <div>Bottoms</div>
+                                    <div>Dresses</div>
+                                    <div>Jackets</div>
+                                    <div>Shoes</div>
+                                    <div>Accesories</div>
+                                    <div>Sale</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    
                 </div>
             </div>
         )
