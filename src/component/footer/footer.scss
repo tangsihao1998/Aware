@@ -1,8 +1,73 @@
-.footer-container{
-    .footer1{
+@mixin wordfont {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.57;
+    letter-spacing: normal;
+    text-align: center;
+    color: #b7b7b7;
+    cursor: pointer;
+}
 
+@mixin wordflex{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    div{
+        @include wordfont;
+    }
+}
+
+.footer-container{
+    width:100%;
+    height:185px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border-top:1px solid #cccccc;
+    .footer1{
+        width: 80%;
+        height: 120px;
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom:1px solid #cccccc;
+        .social-icon{
+            width:24px;
+            height:24px;
+            padding-left:14px;
+            color:#cccccc;
+        }
+        .footer-menu{
+            @include wordflex;
+            font-size: 14px;
+            div{
+                padding: 0px 20px;
+            }
+        }
     }
     .footer2{
-        
+        width: 80%;
+        height: 63px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .footer-menu{
+            @include wordflex;
+            font-size: 12px;
+            div{
+                padding-right: 20px;
+            }
+        }
+           
+        .policy{
+            @include wordflex;
+            font-size:12px;
+            div{
+                padding-left: 10px;
+            }
+        }
     }
 }
