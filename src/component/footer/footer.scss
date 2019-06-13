@@ -1,21 +1,11 @@
-@mixin wordfont {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.57;
-    letter-spacing: normal;
-    text-align: center;
-    color: #b7b7b7;
-    cursor: pointer;
-}
+@import './../../index.scss';
 
 @mixin wordflex{
-    display:flex;
-    justify-content: space-around;
-    align-items: center;
+    @include flexaround;
     div{
         @include wordfont;
+        text-align: center;
+        cursor: pointer;
     }
 }
 
@@ -28,11 +18,9 @@
     align-items: center;
     border-top:1px solid #cccccc;
     .footer1{
+        @include flexbetween;
         width: 80%;
         height: 120px;
-        display:flex;
-        justify-content: space-between;
-        align-items: center;
         border-bottom:1px solid #cccccc;
         .social-icon{
             width:24px;
@@ -43,20 +31,20 @@
         .footer-menu{
             @include wordflex;
             font-size: 14px;
+            color: #b7b7b7;
             div{
                 padding: 0px 20px;
             }
         }
     }
     .footer2{
+        @include flexbetween;
         width: 80%;
         height: 63px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         .footer-menu{
             @include wordflex;
             font-size: 12px;
+            color: #b7b7b7;
             div{
                 padding-right: 20px;
             }
@@ -65,6 +53,7 @@
         .policy{
             @include wordflex;
             font-size:12px;
+            color: #b7b7b7;
             div{
                 padding-left: 10px;
             }

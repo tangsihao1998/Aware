@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+// import './index.scss';
 // import { library } from '@fortawesome/fontawesome-svg-core'
 // import { faSearch, faShoppingCart,faChevronDown } from '@fortawesome/free-solid-svg-icons'
 

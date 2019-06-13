@@ -1,3 +1,5 @@
+@import './../../../index.scss';
+
 .Logo {
     width: 96px;
     height: 20px;
@@ -13,34 +15,23 @@
         background-color: var(--white);
         border-bottom:1px solid #cccccc;
         .content{
+            @include flexcenter;
             width: 100%;
             height: 70px;
             border-bottom:1px solid #cccccc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             .flex-container{
+                @include flexbetween;
                 width:80%;
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                align-items: center;
                 padding-top: 15px;
                 .searchform{
                     position:relative;
                     .SearchBox {
-                        width: 130px;
+                        @include wordfont;
+                        width: 171px;
                         height: 35px;
                         border: 1px solid #b7b7b7;
                         border-radius: 17px;
-                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                         font-size: 14px;
-                        font-weight: normal;
-                        font-style: normal;
-                        font-stretch: normal;
-                        line-height: 1.57;
-                        letter-spacing: normal;
                         color: #4d4d4d;
                         padding-left:10px;
                         padding-right:45px;
@@ -53,7 +44,7 @@
                         opacity: 0.6;
                         position: absolute;
                         right: 12px;
-                        top: 7px;
+                        top: 5px;
                         background-color: white;
                         border: none;
                     }       
@@ -63,15 +54,10 @@
                     display:flex;
                     .LoginForm{
                         .Register {
+                            @include wordfont;
                             width: 59px;
                             height: 22px;
-                            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                             font-size: 14px;
-                            font-weight: normal;
-                            font-style: normal;
-                            font-stretch: normal;
-                            line-height: 1.57;
-                            letter-spacing: normal;
                             background-color: white;
                             border: white;
                             color: #4d4d4d;
@@ -98,20 +84,17 @@
                             object-fit: contain;
                             font-size:24px;
                             background-color: white;
-                            padding-right:2px;
                             border: none;
                         }
                         .Oval{
+                            @include wordfont;
                             position: absolute;
-                            width: 13px;
+                            width: 18px;
                             height: 18px;
                             background-color: #ffa15f;
                             color: white;
                             font-size: 12px;
-                            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                             font-weight: 500;
-                            font-style: normal;
-                            font-stretch: normal;
                             border-radius: 15px;
                             left:18px;
                             bottom: 18px;
@@ -124,23 +107,14 @@
         .navbody{
             width: 100%;
             height: 42px;
-            // border:1px solid red;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             position: relative;
+            @include flexcenter;
             .item{
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                @include flexbaseline;
+                @include wordfont;
                 font-size: 14px;
                 font-weight: 500;
-                font-style: normal;
-                font-stretch: normal;
-                line-height: 1.57;
-                letter-spacing: normal;
                 color: #202124;
-                display:flex;
-                justify-content: baseline;
-                align-items: center;
                 padding-right: 40px;
                 cursor: pointer;
                 #IconChev{
@@ -157,30 +131,22 @@
                     height: 55px;
                     visibility: hidden;
                     .itemform{
+                        @include flexaround;
                         width: 50%;
                         height:55px;
-                        display: flex;
-                        justify-content: space-around;
-                        align-items: center;
                         background-color: #fbfbfb;
                         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
                         border: solid 0.5px #eaeaea;
                         position: absolute;
                         left:25%;
                         top: 37px;
-                        // border:1px solid black;
                         div{
+                            @include wordfont;
                             width: 54px;
                             height: 22px;
-                            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                            font-size: 14px;
-                            font-weight: normal;
-                            font-style: normal;
-                            font-stretch: normal;
-                            line-height: 1.57;
-                            letter-spacing: normal;
                             text-align: center;
-                            color: #202124;
+                            color: #202124; 
+                            font-size: 14px;
                         }
                     }
                 }
