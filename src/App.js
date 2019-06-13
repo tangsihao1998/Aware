@@ -28,6 +28,11 @@ class App extends React.Component{
         <header className="">
           <Navbar />
         </header>
+        <body>
+          <div>
+          
+          </div>
+        </body>
         <footer className="">
           <Footer />
         </footer>
