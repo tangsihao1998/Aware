@@ -25,12 +25,23 @@ class product extends React.Component{
                     <div className="usersidebar">
                         {/* Category component */}
                         <div className="category">
-                            <div>Category</div>
-                            <div className >All dresses</div>
-
+                            {/* Title static */}
+                            <div className="optionhead">Category</div>
+                            {/* Name off Item (Component) */}
+                            <div className="items" >
+                                <div className="ItemsName">All dresses</div>
+                                <div className="line"></div>
+                                <div className="listchoose">
+                                    <div>Rompers/Jumpsuits</div>
+                                    <div>Casual dresses</div>
+                                    <div>Going out dresses</div>
+                                </div>
+                            </div>
                         </div>
+                        <div className="line1"></div>
                         {/* Filter component */}
                         <div className="filter">
+                            <div className="optionhead">Filter</div>
                             <Filter />
                         </div>
                     </div>
@@ -39,16 +50,16 @@ class product extends React.Component{
                         {/* mainhead component */}
                         <div className="headflex">
                             {/* Sort By component */}
-                            <div className="sortby"></div>
+                            <div className="sortby">SortBy</div>
                             {/* Pagination component */}
-                            <div className="pagination"></div>
+                            <div className="pagination">abc</div>
                         </div>
                         {/* Product data component*/}
                         <div className="productlist">
                             {/* Product component */}
                             <div className="product">
                                 {/* Image  */}
-                                <img src="" class="image12321321321321"/>
+                                <img src="images/img1.jpg" class="productimg"/>
                                 {/* Button quick shop component*/}
                                 <button className="quickshop">+Quick Shop</button>
                                 {/* Sold out component*/}
