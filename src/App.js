@@ -1,7 +1,9 @@
-import React from 'react';
-import Navbar from './component/layouts/navbar/navbar';
-import Footer from './component/footer/footer';
+//import Component
+import React from 'react'
+import AppHeader from './component/header/header'
+import Footer from './component/footer/footer'
 import Product from './page/product/product'
+
 class App extends React.Component{
   // state={
   //   name:'hao',
@@ -27,7 +29,7 @@ class App extends React.Component{
     return (
       <div className="App">
         <header className="">
-          <Navbar />
+          <AppHeader />
         </header>
         <body>
           <div>

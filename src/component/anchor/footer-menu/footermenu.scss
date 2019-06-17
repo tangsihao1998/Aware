@@ -1,0 +1,6 @@
+@import '../../footer/footer.scss';
+
+.footer-menu{
+    @include wordflex;
+    color: #b7b7b7;
+}

@@ -1,4 +1,8 @@
+//import component
 import React, { Component } from 'react'
+import FooterMenu from '../anchor/footer-menu/footermenu'
+
+//import scss
 import "./footer.scss"
 
 class footer extends Component {
@@ -9,14 +13,8 @@ class footer extends Component {
                 <div className="footer1">
                     <div><img className="Logo" src="images/Logo/logo.png" srcSet="images/Logo/logo@2x.png 2x,images/Logo/logo@3x.png 3x" 
                                     alt="Company's Logo"></img></div>
-                    <div className="footer-menu">
-                        {/* Split out Component anchor */}
-                        <div>Home</div>
-                        <div>Products</div>
-                        <div>Services</div>
-                        <div>About Us</div>
-                        <div>Helps</div>
-                        <div>Contacts</div>
+                    <div className="menu1">
+                        <FooterMenu />
                     </div>
                     <div>
                         <a className="social-icon" href="https://twitter.com/?lang=vi"><i class="fa fa-twitter" aria-hidden="true"></i></a>
@@ -27,14 +25,8 @@ class footer extends Component {
                 {/* Privacy & Options */}
                 <div className="footer2">
                     {/* Split out Component footermenu */}
-                    <div className="footer-menu">
-                        {/* Split out Component anchor */}
-                        <div>Home</div>
-                        <div>Products</div>
-                        <div>Services</div>
-                        <div>About Us</div>
-                        <div>Helps</div>
-                        <div>Contacts</div>
+                    <div className="menu2">
+                        <FooterMenu />
                     </div>
                     <div className="policy">
                         {/* Split out Component anchor */}

@@ -1,6 +1,7 @@
 // React
 import React from 'react';
-import Filter from './../../component/layouts/filter/filter';
+import Sidebar from '../../component/sidebar/user/usersidebar';
+import ProductData from '../../component/anchor/product-data/product-data';
 //SCSS
 import './product.scss';
 
@@ -22,53 +23,42 @@ class product extends React.Component{
                 {/* Main container component*/}
                 <div className="product-container">
                     {/* Sidebar component */}
-                    <div className="usersidebar">
-                        {/* Category component */}
-                        <div className="category">
-                            {/* Title static */}
-                            <div className="optionhead">Category</div>
-                            {/* Name off Item (Component) */}
-                            <div className="items" >
-                                <div className="ItemsName">All dresses</div>
-                                <div className="line"></div>
-                                <div className="listchoose">
-                                    <div>Rompers/Jumpsuits</div>
-                                    <div>Casual dresses</div>
-                                    <div>Going out dresses</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="line1"></div>
-                        {/* Filter component */}
-                        <div className="filter">
-                            <div className="optionhead">Filter</div>
-                            <Filter />
-                        </div>
-                    </div>
+                    <Sidebar />
                     {/* product component */}
                     <div className="main-container">
                         {/* mainhead component */}
                         <div className="headflex">
                             {/* Sort By component */}
-                            <div className="sortby">SortBy</div>
+                            <div className="sortby">
+                                {/* <div className="sorttitle">Sort By: </div>
+                                <div className="sortdropdown">
+                                    <div>Popularity</div>
+                                    <div>Popularity</div>
+                                </div>
+                                <button><i class="fa fa-chevron-down" aria-hidden="true"></i></button> */}
+                                <label>Sort by:</label>
+                                <select className="sortby-control">
+                                    <option value="value1">Popularity</option>
+                                    <option value="value2">Popularity</option>
+                                    <option value="value3">Popularity</option>
+                                </select>
+                            </div>
                             {/* Pagination component */}
-                            <div className="pagination">abc</div>
+                            <div className="pagination">
+                                <button className="pagi"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+                                <div>1/10</div>
+                                <button className="pagi"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+                            </div>
                         </div>
                         {/* Product data component*/}
                         <div className="productlist">
                             {/* Product component */}
-                            <div className="product">
-                                {/* Image  */}
-                                <img src="images/img1.jpg" class="productimg"/>
-                                {/* Button quick shop component*/}
-                                <button className="quickshop">+Quick Shop</button>
-                                {/* Sold out component*/}
-                                <div className="soldout">Sold out</div>
-                                {/* Product Name */}
-                                <div className="productname">Collete</div>
-                                {/* Price */}
-                                <div>$69.00</div>
-                            </div>
+                            <ProductData />
+                            <ProductData />
+                            <ProductData />
+                            <ProductData />
+                            <ProductData />
+                            <ProductData />
                         </div>
                     </div>
                 </div>

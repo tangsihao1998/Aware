@@ -13,48 +13,12 @@
             font-size:14px;
         }
     }
+
+    
     .product-container{
-        width:80%;
+        width:85%;
         display:flex;
-        .usersidebar{
-            width:200px;
-            margin-right:20px;
-            .optionhead{
-                color:#202124;
-                font-weight: bold;
-                font-size: 16px;
-                margin-bottom: 29px;
-            }
-            .category{
-                padding-bottom: 54px;
-                .items{
-                    div{
-                        font-size:14px;
-                        margin-bottom:18px;
-                        color:#4d4d4d;
-                    }
-                    .listchoose{
-                        cursor:pointer;
-                    }
-                    .ItemsName{
-                        color:#ff6900;
-                    }
-                    .line{
-                        width:20px;
-                        border: 0.5px solid #b7b7b7;
-                        margin-top: -8px;
-                        margin-bottom: 8px;
-                    }
-                }
-            }
-            .line1{
-                width:76px;
-                border: 0.5px solid #b7b7b7;
-            }
-            .filter{
-                padding-top: 48px;
-            }
-        }
+        margin-bottom: 20px;
         .main-container{
             width:100%;
             display:flex;
@@ -63,30 +27,66 @@
                 @include flexbetween;
                 padding-bottom:13px;
                 .sortby{
+                    position: relative;
+                    .sortby-control{
+                        width:179px;
+                        height:32px;
+                        padding-left:60px;
+                        font-size:12px;
+                        font-weight: bold;
+                        color:#202124;
+                    }
+                    label{
+                        position: absolute;
+                        font-size:12px;
+                        font-weight: 500;
+                        color:hsl(0, 0%, 30%);
+                        top:7px;
+                        left:15px;
+                    }
+                    // width:179px;
+                    // height:32px;
+                    // display:flex;
+                    // justify-content: space-between;
+                    // border:1px solid #d4d3d3;
+                    // align-items: center;
+                    // .sorttitle{
+                    //     font-size:12px;
+                    //     font-weight: 500;
+                    //     color:#4d4d4d;
+                    //     margin-left:15px;
+                    // }
+                    // button{
+                    //     border:none;
+                    //     background-color: white;
+                    // }
+                    // .sortdropdown{
 
+                    // }
                 }
                 .pagination{
-
+                    display: flex;
+                    justify-content: space-between;
+                    font-size:14px;
+                    font-weight: 500;
+                    width: 90px;
+                    .pagi{
+                        margin-top:1px;
+                        border: none;
+                        background-color: white;
+                    }
                 }
             }
             .productlist{
                 width: 100%;
                 height:100%;
-                .product{
-                    .soldout{
-
-                    }
-                    .productimg{
-                        width:20%;
-
-                    }
-                    .quickshop{
-
-                    }
-                    .productname{
-
-                    }
-                }
+                display: grid;
+                // grid-column-gap: 20px;
+                // grid-row-gap: 20px;
+                grid-template-columns: 20% 20% 20% 20% 20%;
+                // display:flex;
+                // justify-content: space-between;
+                // flex-wrap: wrap;
             }
         }
     }

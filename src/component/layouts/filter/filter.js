@@ -1,55 +1,77 @@
+//import component
 import React, { Component } from 'react'
-import { Accordion, Icon } from 'semantic-ui-react'
+// import { Accordion, Icon } from 'semantic-ui-react'
+
+//import SCSS
+import './filter.scss'
 
 class filter extends Component {
-  state = { activeIndex: 0 }
+  state = { activeFilter: null }
 
-  handleClick = (e, titleProps) => {
-    const { index } = titleProps
-    const { activeIndex } = this.state
-    const newIndex = activeIndex === index ? -1 : index
-
-    this.setState({ activeIndex: newIndex })
+  FilterhandleClick = (name) => {
+    console.log(this.state.active);
+    this.setState({ activeFilter: name })
   }
-
-  render() {
-    const { activeIndex } = this.state
-
+  
+  render() {    
+    const {activeFilter} = this.state;
     return (
-      <Accordion className="filtercontainer">
-        {/* Size Options */}
-        <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
-          <Icon name='dropdown' />
-          Size
-        </Accordion.Title>
-        <Accordion.Content active={activeIndex === 0}>
-          <p>
-            {/* Design Size Here */}
-            hello
-          </p>
-        </Accordion.Content>
-
-        {/* Color Options */}
-        <Accordion.Title active={activeIndex === 1} index={1} onClick={this.handleClick}>
-          <Icon name='dropdown' />
-          Color
-        </Accordion.Title>
-        <Accordion.Content active={activeIndex === 1}>
-          <p>
-           {/* Design Here */}
-          </p>
-        </Accordion.Content>
-
-        {/* Brand Options */}
-        <Accordion.Title active={activeIndex === 2} index={2} onClick={this.handleClick}>
-          <Icon name='dropdown' />
-          Brand
-        </Accordion.Title>
-        <Accordion.Content active={activeIndex === 2}>
-          {/* Design here */}
-        </Accordion.Content>
-      </Accordion>
+      <div>
+        <div className="filter-container">
+            <div className={`filter-option ${activeFilter === 'size' && 'active'}`}  onClick={(e) => this.FilterhandleClick('size')}>
+                <div className="Click">
+                  <div>Size</div>
+                  <div className="ClickIcon"><i class="fa fa-chevron-down"></i></div>
+                </div>
+                {/* Component Size */}
+                <div className="inside">
+                  ABCSJSJSJSJSJS
+                </div>
+            </div>
+            <div className={`filter-option ${activeFilter === 'color' && 'active'}`}  onClick={(e)=>this.FilterhandleClick('color')}>
+                <div className="Click">
+                  <div>Color</div>
+                  <div className="ClickIcon"><i class="fa fa-chevron-down"></i></div>
+                </div>
+                {/* Component Color */}
+                <div className="inside">
+                  ABCSJSJSJSJSJS
+                </div>
+            </div>
+            <div className={`filter-option ${activeFilter === 'brand' && 'active'}`}  onClick={(e)=>this.FilterhandleClick('brand')}>
+                <div className="Click">
+                  <div>Brand</div>
+                  <div className="ClickIcon"><i class="fa fa-chevron-down"></i></div>
+                </div>
+                {/* Component Brand */}
+                <div className="inside">
+                  ABCSJSJSJSJSJS
+                </div>
+            </div>
+            <div className={`filter-option ${activeFilter === 'price' && 'active'}`}  onClick={(e)=>this.FilterhandleClick('price')}>
+                <div className="Click">
+                  <div>Price</div>
+                  <div className="ClickIcon"><i class="fa fa-chevron-down"></i></div>
+                </div>
+                {/* Component Price */}
+                <div className="inside">
+                  ABCSJSJSJSJSJS
+                </div>
+            </div>
+            <div className={`filter-option ${activeFilter === 'avail' && 'active'}`}  onClick={(e)=>this.FilterhandleClick('avail')}>
+                <div className="Click">
+                  <div>Available</div>
+                  <div className="ClickIcon"><i class="fa fa-chevron-down"></i></div>
+                </div>
+                {/* Component Available */}
+                <div className="inside">
+                  ABCSJSJSJSJSJS
+                </div>
+            </div>
+        </div>
+      </div>
     )
   }
 }
+
 export default filter;

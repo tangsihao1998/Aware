@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import "./navbar.scss"
 import Searchbar from '../searchbar/searchbar'
+import Login from '../login/login'
+import Cart from '../../anchor/cart/cart'
+import Dropdown from '../dropdown/dropdown'
 
 class navbar extends Component {
     render() {
@@ -18,79 +21,12 @@ class navbar extends Component {
                             </div>
                             {/* Split out Login,Register and Cart */}
                             <div className="right-side">
-                                <div className="LoginForm">
-                                    <button className="Register">Register</button>
-                                    <button className="Login">Log In</button>
-                                </div>
-                                <div className="CartIcon">
-                                    <button className="Cart"><i class="fa fa-shopping-cart"></i></button>
-                                    {/* Take data cart and show number of product here */}
-                                    <div className="Oval">7</div>
-                                </div> 
+                                <Login />
+                                <Cart />
                             </div>
                         </div>
                     </div>
-                    <div className="navbody">
-                        {/* Hover and choose type */}
-                        {/* Split out Component Dropdown */}
-                        <div className="item">
-                            Men <i id="IconChev" class="fa fa-chevron-down" aria-hidden="true"></i>
-                            <div className="dropdown">
-                                <div className="itemform">
-                                    <div>Tops</div>
-                                    <div>Bottoms</div>
-                                    <div>Dresses</div>
-                                    <div>Jackets</div>
-                                    <div>Shoes</div>
-                                    <div>Accesories</div>
-                                    <div>Sale</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="item">
-                            Ladies 
-                            <i id="IconChev" class="fa fa-chevron-down" aria-hidden="true"></i>
-                            <div className="dropdown">
-                                <div className="itemform">
-                                    <div>Tops</div>
-                                    <div>Bottoms</div>
-                                    <div>Dresses</div>
-                                    <div>Jackets</div>
-                                    <div>Shoes</div>
-                                    <div>Accesories</div>
-                                    <div>Sale</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="item">
-                            Girls <i id="IconChev" class="fa fa-chevron-down" aria-hidden="true"></i>
-                            <div className="dropdown">
-                                <div className="itemform">
-                                    <div>Tops</div>
-                                    <div>Bottoms</div>
-                                    <div>Dresses</div>
-                                    <div>Jackets</div>
-                                    <div>Shoes</div>
-                                    <div>Accesories</div>
-                                    <div>Sale</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="item">
-                            Boys <i id="IconChev" class="fa fa-chevron-down" aria-hidden="true"></i>
-                            <div className="dropdown">
-                                <div className="itemform">
-                                    <div>Tops</div>
-                                    <div>Bottoms</div>
-                                    <div>Dresses</div>
-                                    <div>Jackets</div>
-                                    <div>Shoes</div>
-                                    <div>Accesories</div>
-                                    <div>Sale</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <Dropdown />
                 </div>
             </div>
         )
