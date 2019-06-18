@@ -1,0 +1,36 @@
+@import '../../../index.scss';
+
+.Logo {
+    width: 96px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.navbar-container{
+    .navhead {
+        width: 100%;
+        height: 115px;
+        object-fit: contain;
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.08);
+        background-color: var(--white);
+        border-bottom:1px solid #cccccc;
+        .content{
+            @include flexcenter;
+            width: 100%;
+            height: 70px;
+            border-bottom:1px solid #cccccc;
+            .flex-container{
+                @include flexbetween;
+                width:85%;
+                padding-top: 15px;
+                .searchform{
+                    position:relative;
+                }
+                .right-side{
+                    display:flex;
+                }
+            }   
+        }
+    }
+}
+

@@ -1,0 +1,40 @@
+@import '../../../index.scss';
+
+.filter-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    @include wordfont;
+    color: #4d4d4d;
+    .filter-option{
+        display:flex;
+        flex-direction: column;
+        .Click{
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #b7b7b7;
+            font-size: 14px;
+            margin-top: 10px;
+            padding-bottom: 10px;
+        }
+        &.active{
+            .Click{
+                border-bottom: 1px dashed #b7b7b7;
+                font-weight: 500;
+                color: #202124;
+                .ClickIcon{
+                    transform: rotate(180deg);
+                }
+            }
+            .inside{
+                display: block;
+                border-bottom: 1px solid #b7b7b7;
+            }
+        }
+        .inside{
+            display:none;
+            padding-top: 15px;
+            padding-bottom: 20px;
+        }
+    }
+}

@@ -1,0 +1,25 @@
+@import './../../../index.scss';
+
+.LoginForm{
+    .Register {
+        @include wordfont;
+        width: 59px;
+        height: 22px;
+        font-size: 14px;
+        background-color: white;
+        border: white;
+        color: #4d4d4d;
+        margin-right: 24px;
+    }
+    .Login {
+        @include wordfont;
+        width: 120px;
+        height: 35px;
+        border-radius: 100px;
+        border: solid 1px #ffa15f;
+        color: #ffa15f;
+        background-color: white;
+        margin-right:24px;
+        font-weight: bold;
+    }
+}

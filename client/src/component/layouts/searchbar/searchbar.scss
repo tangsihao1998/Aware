@@ -1,0 +1,25 @@
+@import '../../../index.scss';
+
+.SearchBox {
+    @include wordfont;
+    width: 171px;
+    height: 35px;
+    border: 1px solid #b7b7b7;
+    border-radius: 17px;
+    font-size: 14px;
+    color: #4d4d4d;
+    padding-left:10px;
+    padding-right:45px;
+}
+.SearchIcon {
+    font-size:20px;
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    opacity: 0.6;
+    position: absolute;
+    right: 12px;
+    top: 5px;
+    background-color: white;
+    border: none;
+}       
