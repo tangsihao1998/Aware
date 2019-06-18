@@ -4,7 +4,7 @@ let controller ={};
 
 controller.getAllProduct = async (req,res,next) => {
     try{
-        Productdata.find({}).populate('Categories').exec(function (err,listproduct){
+        await Productdata.find({}).populate('categories').exec(function (err,listproduct){
             if(err) {
                 return next(err);
             }
@@ -20,9 +20,11 @@ controller.getAllProduct = async (req,res,next) => {
 
 controller.AddProduct = async (req,res,next) => {
     try {
-        // Productdata.create({img:{}},function(err,productda){
-        //       if(err) {return console.log(err)};
-        // });
+        await Productdata.create({imgs:['images/img1.jpg','images/img1.jpg','images/img1.jpg','images/img1.jpg'],
+            name:'Collete Stretch Linen Minidress',brand:'Zara',price:19000,size:['M'],
+            color:['red','green','blue'],quantity:200,description:'Best Sellers'},function(err,productda){
+              if(err) {return console.log(err)};
+        });
         res.send('Hello It Me');
         return true;
     } catch (error) {

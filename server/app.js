@@ -29,7 +29,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 //Add new
 app.use('/product',productRouter);
-app.use('/category',categoryRouter)
+app.use('/category',categoryRouter);
 //------------------------------------------------------------
 
 // catch 404 and forward to error handler

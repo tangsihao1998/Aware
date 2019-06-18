@@ -3,12 +3,12 @@ var mongoose = require('mongoose');
 
 //Create Schema
 var product = mongoose.Schema({
-    img: [String],
+    imgs: [String],
     name: String,
-    Categories: {type: mongoose.Schema.Types.ObjectId ,ref:'category'},
+    categories: {type: mongoose.Schema.Types.ObjectId ,ref:'category'},
     brand: String,
     price: {type: Number, min: 0},
-    size: String,
+    size: [{type: String, max: 1}],
     color: [String],
     quantity: Number,
     description: String

@@ -37,7 +37,7 @@ class product extends React.Component{
                                 </div>
                                 <button><i class="fa fa-chevron-down" aria-hidden="true"></i></button> */}
                                 <label>Sort by:</label>
-                                <select className="sortby-control">
+                                <select className="sortby-control" >
                                     <option value="value1">Popularity</option>
                                     <option value="value2">Popularity</option>
                                     <option value="value3">Popularity</option>

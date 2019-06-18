@@ -15,24 +15,6 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
-  // var productdata= new product({name: 'Lara'});
-
-  // //Save and Create 
-  // productdata.save(function(err){
-  //   if(err) {return console.log(err)};
-  // });
-  
-  // product.create({name: 'Nike'},function(err,productda){
-  //   if(err) {return console.log(err)};
-  // });
-  
-  // //Find 
-  // product.find({ 'name': 'Nike'},function(err,productlist) {
-  //   console.log(productlist)
-  //   if(err) {return console.log(err)};
-  // });
-
   res.render('index', { title: 'Express' });
 });
 
