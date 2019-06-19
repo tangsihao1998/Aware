@@ -1,19 +1,21 @@
 //import Component
 import React from 'react'
-import AppHeader from './component/header/header'
+import Header from './component/header/header'
 import Footer from './component/footer/footer'
 import Product from './page/product/product'
+import Homepage from './page/homepage/homepage'
 
 class App extends React.Component{
   render(){
     return (
       <div className="App">
         <header className="">
-          <AppHeader />
+          <Header />
         </header>
         <body>
           <div>
-          <Product />
+          {/* <Product /> */}
+          <Homepage></Homepage>
           </div>
         </body>
         <footer className="">
