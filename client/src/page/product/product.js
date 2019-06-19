@@ -2,18 +2,40 @@
 import React from 'react';
 import Sidebar from '../../component/sidebar/user/usersidebar';
 import ProductData from '../../component/anchor/product-data/product-data';
+
+//import Axios
+import axios from 'axios';
+
 //SCSS
 import './product.scss';
 
 class product extends React.Component{
-    constructor(props) {
-        super(props);
-        //State
-        this.State={
+    state={
+        products:[],
+    }
+    
+    componentDidMount(){
+        axios.get('http://localhost:4000/product/')
+            .then( res => {
+                this.setState({
+                    products: res.data
+                })
+            })
+            .catch(error =>{
+                console.log(error);
+            })
+    }
 
-        };
-    }    
     render(){
+        console.log(this.state.products);
+        const {products} = this.state;
+        const productlist = products.length ? ( products.map (eachproduct =>{ 
+                return (
+                    <ProductData product = {eachproduct}/>
+                )
+            }) 
+        ):(<div></div>)
+        
         return (
             <div className="productlist-container">
                 {/* Component title read from database when user choose */}
@@ -52,13 +74,8 @@ class product extends React.Component{
                         </div>
                         {/* Product data component*/}
                         <div className="productlist">
-                            {/* Product component */}
-                            <ProductData />
-                            <ProductData />
-                            <ProductData />
-                            <ProductData />
-                            <ProductData />
-                            <ProductData />
+                            {/* Loop product */}
+                            {productlist}
                         </div>
                     </div>
                 </div>
