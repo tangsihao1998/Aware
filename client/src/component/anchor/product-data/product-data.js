@@ -4,19 +4,22 @@ import './product-data.scss'
 
 class productdata extends Component {
     render() {
+        console.log(this.props);
+        const {product} = this.props;
+        console.log(product);
         return (
             <div className="product">
                 {/* Image  */}
                 <div className="imagecomponent">
-                <img src="images/img1.jpg" class="productimg"/>
+                <img src={product.imgs[0]} class="productimg"/>
                 {/* Button quick shop component*/}
                 <button className="quickshop">+Quick Shop</button>
                 {/* Sold out component*/}
                 <div className="soldout">Sold out</div></div>
                 {/* Product Name */}
-                <div className="productname">Collete</div>
+                <div className="productname">{product.name}</div>
                 {/* Price */}
-                <div className="productprice">$69.00</div>
+                <div className="productprice">${product.price}</div>
             </div>
         )
     }
