@@ -1,5 +1,15 @@
 @import '../../index.scss';
-
+@mixin LinkTag {
+    display:flex;
+    position: absolute;
+    border: none;
+    box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
+    background-color: #ffa15f;
+    font-weight: bold;
+    color:white;
+    justify-content: center;
+    align-items: center;
+}
 .homepage{
     @include wordfont;
     width: 100%;
@@ -23,18 +33,17 @@
             font-weight: bold;
             right: 10%;
         }
-        button{
+        .linktag{
             position: absolute;
+            @include LinkTag;
             width: 180px;
-            height:49px;
+            font-size:16px;
             top: 80%;
             right: 8%;
-            border: none;
-            box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
-            background-color: #ffa15f;
-            font-size:16px;
-            font-weight: bold;
-            color:white;
+            padding:15px 20px;
+            div{
+                transform: translateY(-2px);
+            }
         }
     }
 }
