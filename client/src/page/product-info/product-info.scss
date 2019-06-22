@@ -1,0 +1,185 @@
+@import '../../index.scss';
+
+@mixin inputformat {
+    box-shadow: inset 1px 1px 3px 0 rgba(159, 159, 159, 0.26);
+    background-color: white;
+    border: none;
+}
+
+@mixin trendformat{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .Image{
+        height: 116px;
+        width: 80px;
+    }
+}
+
+.react-rater-star.is-active {
+    font-size: 16px;
+}
+.react-rater-star.is-disabled {
+    font-size: 16px;
+}
+
+.product-info-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @include wordfont;
+    .title{
+        height: 24px;
+        position: absolute;
+        background-color:#ffffff;
+        top: -8px;
+        left: 100px;
+        font-size:16px;
+        font-weight: 500;
+        color:#202124;
+        padding: 0px 20px;
+    }
+    .product-info{
+        height: 695px;
+        width: 85%;
+        display:flex;
+        flex-direction: column;
+        margin-bottom: 65px;
+        .type{
+            height: 22px;
+            margin-top: 40px;
+            margin-bottom: 32px;
+            text-align: center;
+            font-size:14px;
+            color:#202124;
+        }
+    }
+    .review{
+        width: 85%;
+        margin-bottom: 50px;
+        position: relative;
+
+        .comment{
+            width: 980px;
+            margin-left:100px;
+            margin-right: 230px;
+            margin-top: 30px;          
+            .comment-form{
+                display:flex;
+                padding-bottom: 15px;
+                border-bottom: 1px solid #e2e2e2;
+                strong{
+                    margin-top:15px;
+                    font-size: 14px;
+                    color:#202124;
+                }
+                .inputform{
+                    width:830px;
+                    height:300px;
+                    background-color: #f9f9f9;
+                    margin-left: 120px;
+                    display:flex;
+                    flex-direction: column;
+                    align-content: center;
+                    padding: 0px 30px;
+                    .commentTitle{
+                        @include inputformat;
+                        width: 770px;
+                        height: 45px;
+                        margin-top: 20px;
+                        padding-left:20px;
+                    }
+                    .commentContent{
+                        @include inputformat;
+                        width: 770px;
+                        height: 157px;
+                        margin: 10px 0px;
+                        padding: 10px 20px;
+                        resize:none;
+                        box-sizing: border-box;
+                    }
+                    .submitcomment{
+                        display:flex;
+                        justify-content: space-between;
+                        .rater{
+                            .ti{
+                                font-size: 14px;
+                                color: #808080;
+                            }
+                        }
+                        .submitbutton{
+                            margin-top: 7px;
+                            button{
+                                width: 120px;
+                                height: 35px;
+                                font-size:14px;
+                                font-weight: 600;
+                                color:white;
+                                background-color:#ffa15f;
+                                border: none;
+                            }
+                        }
+                    }
+                }
+            }
+            .review-comment{
+                display:flex;
+                margin-top: 15px;
+                padding-bottom: 15px;
+                border-bottom: 1px dashed #e2e2e2;
+                .User{
+                    width: 145px;
+                    margin-top:15px;
+                    font-size: 14px;
+                    strong{
+                        color:#202124;
+                    }
+                    div{
+                        color: #808080;
+                    }
+                }
+                .usercomment{
+                    width:830px;
+                    background-color: #f9f9f9;
+                    display:flex;
+                    flex-direction: column;
+                    align-content: center;
+                    padding: 15px 30px;
+                    // Content
+                    .commenttitle{
+                        width:750px;
+                        font-size:16px;
+                        font-weight: bold;
+                        color:#202124;
+                    }
+                    .subject{
+                        width:750px;
+                        font-size:14px;
+                        color:#4d4d4d;
+                        margin-top: 23px;
+                    }
+                }
+            }
+            .pagination{
+                width:980px;
+                display: flex;
+                justify-content: flex-end;
+                font-size:14px;
+                font-weight: 500;
+                margin-top: 15px;
+                .pagi{
+                    margin-top:1px;
+                    border: none;
+                    background-color: white;
+                }
+            }
+        }
+    }
+    .product-trend{
+        width: 85%;
+        margin-bottom: 66px;
+        position: relative;
+      
+    }
+}

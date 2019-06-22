@@ -1,3 +1,11 @@
+.react-rater-star.is-active {
+    color: rgb(246, 244, 81);
+}
+
+img{
+    object-fit: cover;
+}
+
 @mixin wordfont {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: normal;
@@ -24,5 +32,17 @@
 @mixin flexbaseline{
     display:flex;
     justify-content: baseline;
+    align-items: center;
+}
+
+@mixin LinkTag {
+    display:flex;
+    position: absolute;
+    border: none;
+    box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
+    background-color: #ffa15f;
+    font-weight: bold;
+    color:white;
+    justify-content: center;
     align-items: center;
 }

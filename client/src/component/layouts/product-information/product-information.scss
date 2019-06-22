@@ -1,0 +1,134 @@
+@import '../../../page/product-info//product-info.scss';
+
+.maincontent{
+    display:flex;
+    height: 537px;
+    .leftside-img{
+        height: 537px;
+        width: 80px;
+        margin-right: 20px;
+        object-fit: cover;
+        @include trendformat;
+    }
+    .main-img{
+        width: 380px;
+        height: 537px;
+        margin-right: 70px;
+        object-fit: cover;
+        .Main-Image{
+            height: 537px;
+            width: 380px;
+        }
+    }
+    .product-infomation{
+        width: 430px;
+        height: 537px;
+        margin-top: -10px;
+        margin-right: 90px;
+        .productname{
+            font-size:24px;
+            font-weight: 500;
+        }   
+        .productprice{
+            font-size:24px;
+            font-weight: 300;
+        }
+        .productrate{
+            display:flex;
+            .reviews{
+                padding-left: 4px;
+                font-size:12px;
+                color:#202124;
+                transform: translateY(3px);
+            }
+        }
+        .productsize{
+            margin-top: 26px;
+            margin-bottom: 28px;
+            .size{
+                font-size: 14px;
+                font-weight: 500;
+                height: 22px;
+                color: #202124;
+                margin-bottom: 10px;
+            }
+        }
+        .productcolor{
+            margin-bottom: 28px;
+            .color{
+                margin-bottom: 10px;
+                font-size: 14px;
+                font-weight: 500;
+                color: #202124;
+            }
+           
+        }
+        .productquantity{
+            display: flex;
+            margin-bottom: 30px;
+            .quantity{
+                height:22px;
+                font-size:14px;
+                font-weight: 500;
+                color: #202124;
+                margin: 10px 0px;
+                margin-right: 20px;
+            }
+            .quantity-picker{
+                display:flex;
+                height: 42px;
+                font-weight: 500;
+                font-size: 14px;
+                border: 1px solid #d4d3d3;
+                .decrease{
+                    height:24px;
+                    width: 24px;
+                    margin: 9px;
+                    text-align: center;
+                }
+                .quantity-pro{
+                    height:24px;
+                    width: 24px;
+                    margin: 9px;
+                    text-align: center;
+                }
+                .increase{
+                    height:24px;
+                    width: 24px;
+                    margin: 9px;
+                    text-align: center;
+                }
+            }
+        }
+        button{
+            width: 430px;
+            height: 50px;
+            box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
+            background-color: #5f6dff;
+            border:none;
+            color:#ffffff;
+            font-weight: bold;
+            font-size:16px;
+            margin-bottom: 25px;
+        }
+        hr{
+            margin-bottom: 24px;
+        }
+        .sizeinfo{
+            font-size:12px;
+        }
+    }
+    .trend-rightside{
+        width: 80px;
+        height: 537px;
+        font-size:14px;
+        .company{
+            margin-bottom:20px;
+        }
+        .trend{
+            height: 495px;
+            @include trendformat;
+        }
+        
+    }
+}
