@@ -1,0 +1,25 @@
+@import '../../../index.scss';
+
+.size-picker{
+    display: flex;
+    .size-box{
+        margin-right:16px;
+        font-size: 14px;
+        font-weight: bold;
+        height: 40px;
+        width: 40px;
+        border: 1px solid #d4d3d3;
+        text-align: center;
+        div{
+            color:#d4d3d3;
+            transform: translateY(8px);
+        }
+    }
+    // .size-box1{
+    //     background-color: #ffa15f;
+    //     border: 1px solid #ffa15f;
+    //     div{
+    //         color:#ffffff;
+    //     }
+    // }
+}

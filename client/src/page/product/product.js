@@ -31,7 +31,7 @@ class product extends React.Component{
         const {products} = this.state;
         const productlist = products.length ? ( products.map (eachproduct =>{ 
                 return (
-                    <ProductData product = {eachproduct}/>
+                    <ProductData product = {eachproduct} key={eachproduct._id}/>
                 )
             }) 
         ):(<div></div>)

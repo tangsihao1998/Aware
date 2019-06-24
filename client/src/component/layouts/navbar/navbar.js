@@ -16,7 +16,7 @@ class navbar extends Component {
                             <Searchbar />
                             {/* Logo Company */}
                             <div>
-                                <img className="Logo" src="images/Logo/logo.png" srcSet="images/Logo/logo@2x.png 2x,images/Logo/logo@3x.png 3x" 
+                                <img className="Logo" src={process.env.PUBLIC_URL + "/images/Logo/logo.png"} srcSet={process.env.PUBLIC_URL + "/images/Logo/logo@2x.png 2x,images/Logo/logo@3x.png 3x"} 
                                     alt="Company's Logo"></img>
                             </div>
                             {/* Split out Login,Register and Cart */}

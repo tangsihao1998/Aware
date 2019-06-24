@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import {Link} from 'react-router-dom'
 import './product-data.scss'
 
 class productdata extends Component {
@@ -11,11 +11,13 @@ class productdata extends Component {
             <div className="product">
                 {/* Image  */}
                 <div className="imagecomponent">
-                <img src={product.imgs[0]} class="productimg"/>
-                {/* Button quick shop component*/}
-                <button className="quickshop">+Quick Shop</button>
-                {/* Sold out component*/}
-                <div className="soldout">Sold out</div></div>
+                    <div>
+                        <img src={process.env.PUBLIC_URL + product.imgs[0]} class="productimg"/>
+                        {/* Button quick shop component*/}
+                        <Link to={"/product/" + product._id} className="quickshop">+Quick Shop</Link>
+                        {/* Sold out component*/}
+                        <div className="soldout">Sold out</div></div>
+                    </div>
                 {/* Product Name */}
                 <div className="productname">{product.name}</div>
                 {/* Price */}

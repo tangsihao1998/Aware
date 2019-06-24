@@ -1,0 +1,13 @@
+@import '../../../index.scss';
+
+.color-picker{
+    display: flex;
+    .color-box{
+        width: 30px;
+        height: 30px;
+        margin-right: 20px;
+        border-radius: 15px;
+        // Background-color
+        background-color: #ff5f6d;
+    }
+}

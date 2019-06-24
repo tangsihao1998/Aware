@@ -1,0 +1,21 @@
+@import '../../../index.scss';
+
+.trend-product{
+    width:100%;
+    display:flex;
+    justify-content: space-between;
+    @include wordfont;
+    .product{
+        width:130px;
+        padding-top: 30px;
+        .trend-image{
+            width:130px;
+            height:195px;
+        }
+        div{
+            font-size:12px;
+            font-weight: 500;
+            color:#4d4d4d;
+        }
+    }
+}
