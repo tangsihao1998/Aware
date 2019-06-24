@@ -2,22 +2,42 @@
 var Productdata = require('../models/products');
 let controller ={};
 
-controller.getAllProduct = async (req,res,next) => {
+// Pagination Product
+controller.getPageProduct = async (page) => {
     try{
-        await Productdata.find({}).populate('categories').exec(function (err,listproduct){
-            if(err) {
-                return next(err);
-            }
-            res.send(listproduct);
-        });
-        return true;
+        let productdata = await Productdata.find({}).populate('categories').limit(20).skip(page*20);
+        return productdata;
     }
     catch(err){
         console.log(err);
-        return false;
+        return err;
     }
 };
 
+// Get All Product
+controller.getAllProduct = async()=>{
+    try{
+        let productdata = await Productdata.find().populate('categories');
+        return productdata;
+    }
+    catch(err){
+        console.log(err);
+        return err;
+    }
+}
+
+// Couunt Product
+controller.ProductCount = async() =>{
+    try {
+        let count = await Productdata.find().count();
+        return count;
+    } catch (error) {
+        console.log(error)
+        return error;
+    }
+}
+
+// Find Product 
 controller.findProduct = async (req,res,next) => {
     try {
         const id = req.params.id;
@@ -34,6 +54,7 @@ controller.findProduct = async (req,res,next) => {
     }
 }
 
+// Add New Product
 controller.AddProduct = async (req,res,next) => {
     try {
         await Productdata.create({imgs:['/images/img1.jpg','/images/img1.jpg','/images/img1.jpg','/images/img1.jpg'],

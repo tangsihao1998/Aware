@@ -12,7 +12,7 @@ import './product-info.scss'
 class productinfo extends Component {
     componentDidMount() {
         let id = this.props.match.params.product_id;
-        axios.get('http://localhost:4000/product/'+id)
+        axios.get('http://localhost:4000/api/product/'+ id)
             .then( res => {
                 this.setState({
                     product: res.data
@@ -26,6 +26,7 @@ class productinfo extends Component {
         super(props);
         this.state={
             product: null,
+            
         }
     }
     render() {

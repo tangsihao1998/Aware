@@ -8,9 +8,8 @@ var cors = require('cors');
 // Define Routes Here -------------------------------------------
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-//Add new
-var productRouter = require('./routes/ApiProductRoute');
-var categoryRouter = require('./routes/ApiCategoryRoute');
+// Api Router
+var apiRoute = require('./routes/ApiRouter');
 // --------------------------------------------------------------
 
 var app = express();
@@ -30,8 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 //Add new
-app.use('/product',productRouter);
-app.use('/category',categoryRouter);
+app.use('/api',apiRoute);
 //------------------------------------------------------------
 
 // catch 404 and forward to error handler

@@ -10,22 +10,72 @@ import axios from 'axios';
 import './product.scss';
 
 class product extends React.Component{
-    state={
-        products:[],
+    constructor(props){
+        super(props);
+        this.state={
+            products:[],
+            page: 1,
+            pagination: 1,
+        }
     }
     
     componentDidMount(){
-        axios.get('http://localhost:4000/product/')
-            .then( res => {
+        // Get Product Per Page
+        axios.get('http://localhost:4000/api/product', {
+            params:{
+                page :this.state.pagination
+            }}).then( res => {
+                console.log(res)
                 this.setState({
-                    products: res.data
+                    products: res.data.listproduct
+                })
+            })
+            .catch(error =>{
+                console.log(error);
+            })
+            // Get Page Number
+        axios.get('http://localhost:4000/api/product/count')
+            .then( res => {
+                console.log(res)
+                this.setState({
+                    page: res.data
                 })
             })
             .catch(error =>{
                 console.log(error);
             })
     }
-
+    componentDidUpdate(prevProps, prevState) {
+        if(this.state.pagination !== prevState.pagination)
+        {
+            axios.get('http://localhost:4000/api/product', {
+            params:{
+                page :this.state.pagination
+            }}).then( res => {
+                this.setState({
+                    products: res.data.listproduct
+                })
+            })
+            .catch(error =>{
+                console.log(error);
+            })
+        }
+    }
+    // Pagination Product
+    decrease = () =>{
+        if(this.state.pagination > 1){
+            this.setState({
+                pagination: (this.state.pagination - 1),
+            });
+        }
+    }
+    increase = () =>{
+        if(this.state.pagination < this.state.page)
+        this.setState({
+            pagination: (this.state.pagination + 1),
+        });
+    }
+    // -------------------------------------------------------------------
     render(){
         console.log(this.state.products);
         const {products} = this.state;
@@ -67,9 +117,9 @@ class product extends React.Component{
                             </div>
                             {/* Pagination component */}
                             <div className="pagination">
-                                <button className="pagi"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
-                                <div>1/10</div>
-                                <button className="pagi"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+                                <button className="pagi"><i class="fa fa-chevron-left" aria-hidden="true" onClick={this.decrease}></i></button>
+                                <div>{this.state.pagination}/{this.state.page}</div>
+                                <button className="pagi"><i class="fa fa-chevron-right" aria-hidden="true" onClick={this.increase}></i></button>
                             </div>
                         </div>
                         {/* Product data component*/}

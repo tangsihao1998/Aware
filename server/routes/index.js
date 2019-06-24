@@ -3,8 +3,6 @@ var router = express.Router();
 
 // Mongoose connection -----------------------------------------------------------------------------------
 var mongoose = require('mongoose');
-// Get Model
-var product = require('../models/products');
 
 mongoose.connect('mongodb://localhost:27017/local',{ useNewUrlParser: true });
 
@@ -13,11 +11,15 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 //---------------------------------------------------------------------------------------------------------
 
 
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+// Define Route
+const UserRouter = require('./ApiUserRoute');
+router.use('/', UserRouter);
 //--------------------------------------------------------------------------------------------
 
 

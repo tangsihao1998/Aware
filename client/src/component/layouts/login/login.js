@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import './login.scss'
 // import { Modal } from 'react-bootstrap'
+//import Axios
+import axios from 'axios';
+
 
 class loginform extends Component {
     constructor(props,context) {
@@ -11,10 +14,15 @@ class loginform extends Component {
             resshow: 'none',
             loginshow: 'none',
             username:'',
+            email:'',
             password:'',
         };
     }
-    
+    // Handle Input Text
+    handleTextChange = (e) => {
+        const { name, value } = e.target;
+        this.setState({ [name]: value });
+    }
     // Handle Login Modal
     handleLoginClose = () =>{
         this.setState({ loginshow: 'none' });
@@ -62,8 +70,19 @@ class loginform extends Component {
         });
     }
     //-----------------------------------------------------------------------------------------------------
+    // Handle Submit Register
+    handleRegister = () =>{
+        axios.post('http://localhost:4000/register',{
+            name: this.state.username,
+            email: this.state.email,
+            password: this.state.password
+        })
+    }
 
     render(){
+        console.log(this.state.username);
+        console.log(this.state.email);
+        console.log(this.state.password);
         return(
             <div>
                 <div className="LoginForm">
@@ -82,11 +101,11 @@ class loginform extends Component {
                         <div className="Alert">Your e-mail/password is invalid!</div>
                         <div className="inputform">
                             <div for="email">E-MAIL</div>
-                            <input type="text" placeholder="Enter your email..." name="email" required className="email"/>
+                            <input type="text" placeholder="Enter your email..." name="email" required className="email" onChange={this.handleTextChange}/>
                         </div>
                         <div className="inputform">
                             <div for="password">PASSWORD</div>
-                            <input type="password" placeholder="Enter your password..." name="password" required />
+                            <input type="password" placeholder="Enter your password..." name="password" required onChange={this.handleTextChange}/>
                         </div>
                         <div className="otherform">
                             <input type="checkbox" name="remember" value="remember" className="remembercheckbox"/>
@@ -112,18 +131,18 @@ class loginform extends Component {
                         {/* Content Here */}
                         <div className="box-content">
                             <div className="inputform">
-                                <div for="email">NAME</div>
-                                <input type="text" placeholder="Enter your name..." name="name" required className="name"/>
+                                <div for="name">NAME</div>
+                                <input type="text" placeholder="Enter your name..." name="username" required className="name" onChange={this.handleTextChange}/>
                                 <p className="Alert">Please enter a valid name</p>
                             </div>
                             <div className="inputform">
                                 <div for="email">E-MAIL</div>
-                                <input type="text" placeholder="Enter your email..." name="email" required className="email"/>
+                                <input type="text" placeholder="Enter your email..." name="email" required className="email" onChange={this.handleTextChange}/>
                                 <p className="Alert">Please enter a valid e-mail</p>
                             </div>
                             <div className="inputform">
                                 <div for="password">PASSWORD</div>
-                                <input type="password" placeholder="Enter your password..." name="password" required />
+                                <input type="password" placeholder="Enter your password..." name="password" required onChange={this.handleTextChange} />
                                 <p className="Alert">Your password must be more than 6 characters!</p>
                             </div>
                         </div>
@@ -131,7 +150,7 @@ class loginform extends Component {
                                 By creating an account you agree to the <br/>
                                 <span>Terms of Service</span> and <span>Privacy Policy</span>
                         </div>
-                        <button>Register</button>
+                        <button onClick={this.handleRegister}>Register</button>
                         <hr/>
                         <div className="alert">
                             <div>Do you have an account?</div>
@@ -152,7 +171,7 @@ class loginform extends Component {
                         <div className="box-content">
                             <div className="inputform">
                                 <div for="email">E-MAIL</div>
-                                <input type="text" placeholder="Enter your email..." name="email" required className="email"/>
+                                <input type="text" placeholder="Enter your email..." name="email" required className="email" onChange={this.handleTextChange}/>
                             </div>
                         </div>
                         <button>Submit</button>
