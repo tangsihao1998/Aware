@@ -4,9 +4,10 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import { createStore } from 'redux';
+import { createStore , applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import appReducer from './reducers/app-reducers';
+import appReducer from './reducers/reducer-index';
+import thunk from 'redux-thunk';
 // import './index.scss';
 // import { library } from '@fortawesome/fontawesome-svg-core'
 // import { faSearch, faShoppingCart,faChevronDown } from '@fortawesome/free-solid-svg-icons'
@@ -15,7 +16,7 @@ import appReducer from './reducers/app-reducers';
 //import 'bootstrap/dist/css/bootstrap.css';
 
 //store
-const store = createStore(appReducer);
+const store = createStore(appReducer, {} ,applyMiddleware(thunk));
 
 //ReactDom (Route)
 ReactDOM.render(

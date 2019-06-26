@@ -1,10 +1,12 @@
-var createError = require('http-errors');
-var express = require('express');
+const createError = require('http-errors');
+const express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var cors = require('cors');
-
+const cors = require('cors');
+const passport = require('passport');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 // Define Routes Here -------------------------------------------
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -25,11 +27,26 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Mongoose connection -----------------------------------------------------------------------------------
+mongoose.connect('mongodb://localhost:27017/local',{ useNewUrlParser: true });
+
+var db=mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+//---------------------------------------------------------------------------------------------------------
+
+// Passport
+app.use(passport.initialize());
+require('./routes/passport')(passport);
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 //------------------ Define a Route --------------------------
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 //Add new
 app.use('/api',apiRoute);
+
 //------------------------------------------------------------
 
 // catch 404 and forward to error handler
