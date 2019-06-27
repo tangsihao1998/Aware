@@ -281,3 +281,10 @@
 #ModalLogin{
     display:block !important;
 }
+
+// _______________________________________________________________________
+// ERROR FORM WHEN INPUT WRONG OR REGISTER WRONG
+#ErrorForm{
+    border: solid 1px #f63f45;
+    background-color: #f6d9d8;
+}

@@ -75,7 +75,7 @@ router.post('/login', async (req,res)=>{
         return res.json;
     }
     return res.status(400).json({
-        error: {email:'Your e-mail/password is invalid!'},
+        error: {password:'Your e-mail/password is invalid!'},
     });
 });
 

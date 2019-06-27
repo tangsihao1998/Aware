@@ -7,6 +7,7 @@ export default function(state = {error:'',isAuthenticated:false,user:''}, action
         case GET_ERRORS:
             return {   
                 error: action.payload,
+                isAuthenticated: false
             }
         case SET_CURRENT_USER:{
             return {

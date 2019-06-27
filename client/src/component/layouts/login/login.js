@@ -136,13 +136,6 @@ class loginform extends Component {
             email: this.state.email,
             password: this.state.password
         }
-        // Set Default State after REGISTER
-        this.setState({
-            username:'',
-            email: '',
-            password: '',
-            resshow: false
-        });
         this.props.RegisterUser(user);       
     }
 
@@ -153,12 +146,6 @@ class loginform extends Component {
             email: this.state.email,
             password: this.state.password
         };
-         // Set Default State after LOGIN
-        this.setState({
-            email: '',
-            password: '',
-            loginshow: false
-        });
         this.props.Login(user);
     }
 
@@ -179,6 +166,18 @@ class loginform extends Component {
         }
     }
     
+    componentDidUpdate(prevProps) {
+        if (this.props.isLogin !== prevProps.isLogin) {
+            this.setState({
+                username: '',
+                email: '',
+                password: '',
+                loginshow: false,
+                resshow: false
+            })
+        }
+    }
+
     render(){
         console.log(this.props);
 
@@ -228,11 +227,11 @@ class loginform extends Component {
                             (errors.password && <div className="Alert">Your e-mail/password is invalid!</div>))}
                         <div className="inputform">
                             <div for="email">E-MAIL</div>
-                            <input type="text" placeholder="Enter your email..." name="email" className="email" onChange={this.handleTextChange} value={email}/>
+                            <input id={`${errors && errors.email && 'ErrorForm'}`} type="text" placeholder="Enter your email..." name="email" className="email" onChange={this.handleTextChange} value={email}/>
                         </div>
                         <div className="inputform">
                             <div for="password">PASSWORD</div>
-                            <input type="password" placeholder="Enter your password..." name="password" onChange={this.handleTextChange} value={password}/>
+                            <input id={`${errors && errors.password && 'ErrorForm'}`} type="password" placeholder="Enter your password..." name="password" onChange={this.handleTextChange} value={password}/>
                         </div>
                         <div className="otherform">
                             <input type="checkbox" name="remember" value="remember" className="remembercheckbox"/>
@@ -260,17 +259,17 @@ class loginform extends Component {
                         <div className="box-content">
                             <div className="inputform">
                                 <div for="username">NAME</div>
-                                <input type="text" placeholder="Enter your name..." name="username" required className="username" onChange={this.handleTextChange} value={username}/>
+                                <input id={`${errors && errors.name && 'ErrorForm'}`} type="text" placeholder="Enter your name..." name="username" required className="username" onChange={this.handleTextChange} value={username}/>
                                 {errors && errors.name && <p className="Alert">{errors.name}</p>}
                             </div>
                             <div className="inputform">
                                 <div for="email">E-MAIL</div>
-                                <input type="text" placeholder="Enter your email..." name="email" required className="email" onChange={this.handleTextChange} value={email}/>
+                                <input id={`${errors && errors.email && 'ErrorForm'}`} type="text" placeholder="Enter your email..." name="email" required className="email" onChange={this.handleTextChange} value={email}/>
                                 { errors && errors.email && <p className="Alert">{errors.email}</p>}
                             </div>
                             <div className="inputform">
                                 <div for="password">PASSWORD</div>
-                                <input type="password" placeholder="Enter your password..." name="password" required onChange={this.handleTextChange} value={password}/>
+                                <input id={`${errors && errors.password && 'ErrorForm'}`} type="password" placeholder="Enter your password..." name="password" required onChange={this.handleTextChange} value={password}/>
                                 { errors && errors.password && <p className="Alert">{errors.password}</p> }
                             </div>
                         </div>
