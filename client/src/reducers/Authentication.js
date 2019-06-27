@@ -1,7 +1,7 @@
 import { GET_ERRORS , GET_DATA_RES , SET_CURRENT_USER} from '../actions/type';
 import isEmpty from '../helpers/isEmpty';
 
-export default function(state = {}, action ) {
+export default function(state = {error:'',isAuthenticated:false,user:''}, action ) {
     console.log("TCL: action", action)
     switch(action.type) {
         case GET_DATA_RES:

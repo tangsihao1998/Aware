@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { GET_ERRORS , GET_DATA_LOG , GET_DATA_RES , SET_CURRENT_USER} from './type';
-import setAuthToken from '../helpers/API';
+import { api } from '../helpers/API';
+import { setAuthToken }  from '../helpers/API';
 import jwt_decode from 'jwt-decode';
 
 export const Register = (user) => dispatch => {
-    axios.post('http://localhost:4000/register', user)
+    api.post('/register', user)
     .then(res => {
 
         console.log(res.data)
@@ -18,7 +19,8 @@ export const Register = (user) => dispatch => {
 }
 
 export const LogIn = (user) => dispatch => {
-    axios.post('http://localhost:4000/login', user)
+    console.log(api.defaults.headers.common['Authorization']);
+    api.post('/login', user)
     .then(res => {
         // Save Token to Local Storage And Send state for modal
         const {token} = res.data;

@@ -11,7 +11,6 @@ class loginform extends Component {
         super(props);
 
         this.state={
-            isLogin: '',
             user:'',
             forgotshow: 'none',
             resshow: 'none',
@@ -19,7 +18,6 @@ class loginform extends Component {
             username:'',
             email:'',
             password:'',
-            errors: '',
             token:''
         };
     }
@@ -34,7 +32,6 @@ class loginform extends Component {
             loginshow: 'none',
             email:'',
             password:'',
-            errors: '',
         });
     }
     handleLoginShow = () => { this.setState({ loginshow: 'block' });}
@@ -48,7 +45,6 @@ class loginform extends Component {
             username:'',
             email:'',
             password:'',
-            errors: '',
         });
     }
     //------------------------------------------------------------------------------
@@ -62,7 +58,6 @@ class loginform extends Component {
             loginshow:'none',
             email:'',
             password:'',
-            errors: '',
         });
     }
     RestoLog = () =>{
@@ -72,7 +67,6 @@ class loginform extends Component {
             username:'',
             email:'',
             password:'',
-            errors:'',
         });
     }
     LogtoForgot = () =>{
@@ -81,7 +75,6 @@ class loginform extends Component {
             forgotshow:'block',
             email:'',
             password:'',
-            errors: '',
         });
     }
     ForgottoLog = () =>{
@@ -134,20 +127,22 @@ class loginform extends Component {
     componentWillReceiveProps(nextProps) {
         if(nextProps) {
             this.setState({
-                errors: nextProps.errors,
-                isLogin: nextProps.isLogin,
                 user: nextProps.user,
             });
         }
     }
 
     render(){
-        console.log('isLogin',this.state.isLogin);
+        const {password} = this.state;
+        const {email} = this.state;
+        const {username} = this.state;
+        const {errors} = this.props;
+        const {isLogin} = this.props;
+        console.log('isLogin',isLogin);
         console.log('User',this.state.user);
-        console.log('Error',this.state.errors);
-        console.log(this.state.username);
-        console.log(this.state.email);
-        console.log(this.state.password);
+        console.log(username);
+        console.log(email);
+        console.log(password);
         return(
             <div>
                 <div className="LoginForm">
@@ -172,15 +167,15 @@ class loginform extends Component {
                     <div className="title">Log In</div>
                     {/* Content Here */}
                     <div className="box-content">
-                        { this.state.errors && ((this.state.errors.email && <div className="Alert">Your e-mail/password is invalid!</div> )|| 
-                            (this.state.errors.password && <div className="Alert">Your e-mail/password is invalid!</div>))}
+                        { errors && ((errors.email && <div className="Alert">Your e-mail/password is invalid!</div> )|| 
+                            (errors.password && <div className="Alert">Your e-mail/password is invalid!</div>))}
                         <div className="inputform">
                             <div for="email">E-MAIL</div>
-                            <input type="text" placeholder="Enter your email..." name="email" className="email" onChange={this.handleTextChange} value={this.state.email}/>
+                            <input type="text" placeholder="Enter your email..." name="email" className="email" onChange={this.handleTextChange} value={email}/>
                         </div>
                         <div className="inputform">
                             <div for="password">PASSWORD</div>
-                            <input type="password" placeholder="Enter your password..." name="password" onChange={this.handleTextChange} value={this.state.password}/>
+                            <input type="password" placeholder="Enter your password..." name="password" onChange={this.handleTextChange} value={password}/>
                         </div>
                         <div className="otherform">
                             <input type="checkbox" name="remember" value="remember" className="remembercheckbox"/>
@@ -207,18 +202,18 @@ class loginform extends Component {
                         <div className="box-content">
                             <div className="inputform">
                                 <div for="username">NAME</div>
-                                <input type="text" placeholder="Enter your name..." name="username" required className="username" onChange={this.handleTextChange} value={this.state.username}/>
-                                { this.state.errors && this.state.errors.name && <p className="Alert">{this.state.errors.name}</p>}
+                                <input type="text" placeholder="Enter your name..." name="username" required className="username" onChange={this.handleTextChange} value={username}/>
+                                {errors && errors.name && <p className="Alert">{errors.name}</p>}
                             </div>
                             <div className="inputform">
                                 <div for="email">E-MAIL</div>
-                                <input type="text" placeholder="Enter your email..." name="email" required className="email" onChange={this.handleTextChange} value={this.state.email}/>
-                                { this.state.errors && this.state.errors.email && <p className="Alert">{this.state.errors.email}</p>}
+                                <input type="text" placeholder="Enter your email..." name="email" required className="email" onChange={this.handleTextChange} value={email}/>
+                                { errors && errors.email && <p className="Alert">{errors.email}</p>}
                             </div>
                             <div className="inputform">
                                 <div for="password">PASSWORD</div>
-                                <input type="password" placeholder="Enter your password..." name="password" required onChange={this.handleTextChange} value={this.state.password}/>
-                                { this.state.errors && this.state.errors.password && <p className="Alert">{this.state.errors.password}</p> }
+                                <input type="password" placeholder="Enter your password..." name="password" required onChange={this.handleTextChange} value={password}/>
+                                { errors && errors.password && <p className="Alert">{errors.password}</p> }
                             </div>
                         </div>
                         <div className="term">
@@ -246,7 +241,7 @@ class loginform extends Component {
                         <div className="box-content">
                             <div className="inputform">
                                 <div for="email">E-MAIL</div>
-                                <input type="text" placeholder="Enter your email..." name="email" required className="email" onChange={this.handleTextChange} value={this.state.email}/>
+                                <input type="text" placeholder="Enter your email..." name="email" required className="email" onChange={this.handleTextChange} value={email}/>
                             </div>
                         </div>
                         <button>Submit</button>
@@ -275,6 +270,9 @@ const mapDispatchToProps = (dispatch)=> {
         Login: (user) => {
             dispatch(LogIn(user));
         }
+        // Register: (user) => {
+        //     dispatch(Register(user))
+        // }
     }
 }
 

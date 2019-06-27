@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 
 // Define Route
 const UserRouter = require('./ApiUserRoute');
-router.use('/', UserRouter);
+router.use('/api', UserRouter);
 //--------------------------------------------------------------------------------------------
 
 module.exports = router;
