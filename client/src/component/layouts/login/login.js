@@ -5,6 +5,7 @@ import './login.scss'
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { LogIn }  from '../../../actions/authentication';
+import { Register } from '../../../actions/authentication';
 
 class loginform extends Component {
     constructor(props) {
@@ -52,7 +53,7 @@ class loginform extends Component {
     handleForgotClose = () => { this.setState({ forgotshow: 'none' });}
     //------------------------------------------------------------------------------
     // Change Modal With Button 
-    LogtoRes = () =>{
+    HandleLogtoRes = () =>{
         this.setState({
             resshow:'block',
             loginshow:'none',
@@ -60,7 +61,7 @@ class loginform extends Component {
             password:'',
         });
     }
-    RestoLog = () =>{
+    HandleRestoLog = () =>{
         this.setState({
             resshow:'none',
             loginshow:'block',
@@ -69,7 +70,7 @@ class loginform extends Component {
             password:'',
         });
     }
-    LogtoForgot = () =>{
+    HandleLogtoForgot = () =>{
         this.setState({
             loginshow:'none',
             forgotshow:'block',
@@ -77,7 +78,7 @@ class loginform extends Component {
             password:'',
         });
     }
-    ForgottoLog = () =>{
+    HandleForgottoLog = () =>{
         this.setState({
             loginshow:'block',
             forgotshow:'none',
@@ -88,30 +89,12 @@ class loginform extends Component {
     // Handle Submit Register
     handleRegister = (e) =>{
         e.preventDefault();
-        axios.post('http://localhost:4000/register',{
+        const user = { 
             name: this.state.username,
             email: this.state.email,
             password: this.state.password
-        }).then( res => {
-            this.setState({
-                errors: res.data.error,
-                email: res.data.email,
-                password: res.data.password,
-                username: res.data.username,
-            });
-            console.log(this.state.errors);
-            // Send State for Modal
-            if(!this.state.errors){
-               this.setState({
-                   resshow:'none'
-               });
-           }
-        }).catch(err => {
-            this.setState({
-                errors:err.response.data.error
-            });
-        });
-       
+        }
+        this.props.RegisterUser(user);       
     }
 
     // Handle Log In
@@ -180,14 +163,14 @@ class loginform extends Component {
                         <div className="otherform">
                             <input type="checkbox" name="remember" value="remember" className="remembercheckbox"/>
                             <label for="remembercheckbox">Remember password</label>
-                            <div onClick={this.LogtoForgot}>Forgot your password?</div>
+                            <div onClick={this.HandleLogtoForgot}>Forgot your password?</div>
                         </div>
                     </div>
                     <button onClick={this.handleLogIn}>Log In</button>
                     <hr/>
                     <div className="alert">
                         <div>Don't have an account?</div>
-                        <div className="alert-button" onClick={this.LogtoRes}>Register</div>
+                        <div className="alert-button" onClick={this.HandleLogtoRes}>Register</div>
                     </div>
                 </div>
                 {/* ______________________________________________________________________________________________________ */}
@@ -224,7 +207,7 @@ class loginform extends Component {
                         <hr/>
                         <div className="alert">
                             <div>Do you have an account?</div>
-                            <div className="alert-button" onClick={this.RestoLog}>Login</div>
+                            <div className="alert-button" onClick={this.HandleRestoLog}>Login</div>
                         </div>
                     </div>
                 </div>
@@ -248,7 +231,7 @@ class loginform extends Component {
                         <hr/>
                         <div className="alert">
                             <div>I remember my password now</div>
-                            <div className="alert-button" onClick={this.ForgottoLog}>Login</div>
+                            <div className="alert-button" onClick={this.HandleForgottoLog}>Login</div>
                         </div>
                     </div>
                 </div>
@@ -269,10 +252,10 @@ const mapDispatchToProps = (dispatch)=> {
     return {
         Login: (user) => {
             dispatch(LogIn(user));
+        },
+        RegisterUser: (user) => {
+            dispatch(Register(user))
         }
-        // Register: (user) => {
-        //     dispatch(Register(user))
-        // }
     }
 }
 

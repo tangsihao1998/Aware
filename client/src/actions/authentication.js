@@ -7,8 +7,12 @@ import jwt_decode from 'jwt-decode';
 export const Register = (user) => dispatch => {
     api.post('/register', user)
     .then(res => {
-
         console.log(res.data)
+        const user = {
+            email: res.data.email,
+            password: res.data.password,
+        }
+        dispatch(LogIn(user));        
     })
     .catch(err => {
         dispatch({
@@ -19,7 +23,6 @@ export const Register = (user) => dispatch => {
 }
 
 export const LogIn = (user) => dispatch => {
-    console.log(api.defaults.headers.common['Authorization']);
     api.post('/login', user)
     .then(res => {
         // Save Token to Local Storage And Send state for modal
@@ -47,3 +50,5 @@ export const setCurrentUser = (decoded,errornull) => {
         }
     }
 }
+
+// Can Do Remember Me Here
