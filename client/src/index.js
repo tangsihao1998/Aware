@@ -8,6 +8,9 @@ import { createStore , applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import appReducer from './reducers/reducer-index';
 import thunk from 'redux-thunk';
+import jwt_decode from 'jwt-decode';
+import {setAuthToken} from './helpers/API';
+import { setCurrentUser, logoutUser } from './actions/authentication';
 // import './index.scss';
 // import { library } from '@fortawesome/fontawesome-svg-core'
 // import { faSearch, faShoppingCart,faChevronDown } from '@fortawesome/free-solid-svg-icons'
@@ -17,6 +20,12 @@ import thunk from 'redux-thunk';
 
 //store
 const store = createStore(appReducer, {} ,applyMiddleware(thunk));
+
+if(localStorage.jwtToken) {
+    setAuthToken(localStorage.jwtToken);
+    const decoded = jwt_decode(localStorage.jwtToken);
+    store.dispatch(setCurrentUser(decoded));
+}
 
 //ReactDom (Route)
 ReactDOM.render(

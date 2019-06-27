@@ -7,7 +7,6 @@ import Homepage from './page/homepage/homepage'
 import ProductInfo from './page/product-info/product-info'
 import { BrowserRouter as Router,Route,Switch }  from 'react-router-dom'
 import { withRouter } from 'react-router'
-import { Provider } from 'react-redux'
 
 
 // Scroll To Top Component

@@ -1,7 +1,7 @@
 @import './../../../index.scss';
 
+// Login Form
 .LoginForm{
-    // display:none;
     .Register {
         @include wordfont;
         width: 59px;
@@ -23,6 +23,10 @@
         margin-right:24px;
         font-weight: bold;
     }
+    
+}
+.LoginForm.disable{
+    display:none !important;
 }
 
 .User-form{
@@ -53,11 +57,13 @@
         }
     }
 }
-
+.User-form.enable{
+    display: block !important;
+}
 
 /* The Modal (background) */
 .modal {
-    display: block; /* Hidden by default */
+    display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
@@ -69,7 +75,7 @@
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 .modal-content {
-    display: block; /* Hidden by default */
+    display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
@@ -194,10 +200,12 @@
     }
 }
 
-#RegisterModal{
+// REGISTER MODAL
+#RegisterModalenable{
     margin: 20px 30%;
     max-height: 95vh;
     // height: 703px;
+    display:block !important;
     overflow: auto;
     .box-content{
         height:350px;
@@ -222,9 +230,14 @@
         }
     }
 }
-
-#ForgotModal{
+#ModalRegister{
+    display:block !important;
+}
+//_______________________________________________________________
+// FORGOT MODAL
+#ForgotModalenable{
     height: 436px;
+    display:block !important;
     .instructor{
         font-size: 12px;
         font-weight: 500;
@@ -238,5 +251,15 @@
         }
     }
 }
+#ModalForgot{
+    display:block !important;
+}
+//________________________________________________________________________
+// LOGIN MODAL
+#LoginModalenable{
+    display:block !important;
+} 
 
-
+#ModalLogin{
+    display:block !important;
+}

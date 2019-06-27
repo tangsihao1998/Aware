@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ERRORS , GET_DATA_LOG , GET_DATA_RES , SET_CURRENT_USER} from './type';
+import { GET_ERRORS , SET_CURRENT_USER} from './type';
 import { api } from '../helpers/API';
 import { setAuthToken }  from '../helpers/API';
 import jwt_decode from 'jwt-decode';
@@ -27,11 +27,10 @@ export const LogIn = (user) => dispatch => {
     .then(res => {
         // Save Token to Local Storage And Send state for modal
         const {token} = res.data;
-        const errornull = res.data.error;
         localStorage.setItem('jwtToken', token);
         setAuthToken(token);
         const decoded = jwt_decode(token);
-        dispatch(setCurrentUser(decoded,errornull));
+        dispatch(setCurrentUser(decoded));
     })
     .catch(err => {
         dispatch({
@@ -41,14 +40,13 @@ export const LogIn = (user) => dispatch => {
     });
 }
 
-export const setCurrentUser = (decoded,errornull) => {
+export const setCurrentUser = (decoded) => {
     return {
         type: SET_CURRENT_USER,
         payload: {
             user: decoded,
-            error: errornull
+            error: ''
         }
     }
 }
 
-// Can Do Remember Me Here

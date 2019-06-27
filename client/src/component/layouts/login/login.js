@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import './login.scss'
 // import { Modal } from 'react-bootstrap'
-//import Axios
-import axios from 'axios';
+
 import { connect } from 'react-redux';
 import { LogIn }  from '../../../actions/authentication';
 import { Register } from '../../../actions/authentication';
@@ -10,16 +9,14 @@ import { Register } from '../../../actions/authentication';
 class loginform extends Component {
     constructor(props) {
         super(props);
-
         this.state={
-            user:'',
-            forgotshow: 'none',
-            resshow: 'none',
-            loginshow: 'none',
+            forgotshow: false,
+            resshow: false,
+            loginshow: false,
             username:'',
             email:'',
             password:'',
-            token:''
+            errors:'',
         };
     }
     // Handle Input Text
@@ -30,63 +27,83 @@ class loginform extends Component {
     // Handle Login Modal
     handleLoginClose = () =>{
         this.setState({ 
-            loginshow: 'none',
+            loginshow: false,
             email:'',
             password:'',
+            errors:''
         });
     }
-    handleLoginShow = () => { this.setState({ loginshow: 'block' });}
+    handleLoginShow = () => { 
+        this.setState({ 
+            loginshow: true, 
+            errors:''
+        });
+    }
     //------------------------------------------------------------------------------
     // Handle Register Modal
-    handleResShow = () => { this.setState({ resshow: 'block' });}
-
+    handleResShow = () => { 
+        this.setState({ 
+            resshow: true,
+            errors:''
+        });
+    }
     handleResClose = () =>{
         this.setState({
-            resshow: 'none',
+            resshow: false,
             username:'',
             email:'',
             password:'',
+            errors:''
         });
     }
     //------------------------------------------------------------------------------
     //Handle ForgotPassword Modal
-    handleForgotClose = () => { this.setState({ forgotshow: 'none' });}
+    handleForgotClose = () => { 
+        this.setState({ 
+            forgotshow: false,
+            errors:''
+        });
+    }
     //------------------------------------------------------------------------------
     // Change Modal With Button 
     HandleLogtoRes = () =>{
         this.setState({
-            resshow:'block',
-            loginshow:'none',
+            resshow:true,
+            loginshow:false,
             email:'',
             password:'',
+            errors:''
         });
     }
     HandleRestoLog = () =>{
         this.setState({
-            resshow:'none',
-            loginshow:'block',
+            resshow: false,
+            loginshow:true,
             username:'',
             email:'',
             password:'',
+            errors:''
         });
     }
     HandleLogtoForgot = () =>{
         this.setState({
-            loginshow:'none',
-            forgotshow:'block',
+            loginshow:false,
+            forgotshow:true,
             email:'',
             password:'',
+            errors:''
         });
     }
     HandleForgottoLog = () =>{
         this.setState({
-            loginshow:'block',
-            forgotshow:'none',
+            loginshow:true,
+            forgotshow:false,
             email:'',
+            errors:''
         });
     }
     //-----------------------------------------------------------------------------------------------------
-    // Handle Submit Register
+    // Handle Submit Register Event
     handleRegister = (e) =>{
         e.preventDefault();
         const user = { 
@@ -97,7 +114,7 @@ class loginform extends Component {
         this.props.RegisterUser(user);       
     }
 
-    // Handle Log In
+    // Handle Log In Event
     handleLogIn = (e) => {
         e.preventDefault();
         const user = {
@@ -107,45 +124,53 @@ class loginform extends Component {
         this.props.Login(user);
     }
 
+    // Handle Log Out Event
+    handleLogoutEvent = (e) =>{
+
+    }
+
     componentWillReceiveProps(nextProps) {
         if(nextProps) {
             this.setState({
-                user: nextProps.user,
+                errors: nextProps.errors,
             });
         }
     }
-
+    
     render(){
+        console.log(this.props);
+
+        // Declare Variables
+        const {isLogin} = this.props;
+        const {user} = this.props;
+        const {errors} = this.state;
         const {password} = this.state;
         const {email} = this.state;
         const {username} = this.state;
-        const {errors} = this.props;
-        const {isLogin} = this.props;
-        console.log('isLogin',isLogin);
-        console.log('User',this.state.user);
-        console.log(username);
-        console.log(email);
-        console.log(password);
+        const {loginshow}= this.state;
+        const {resshow} = this.state;
+        const {forgotshow} = this.state;
+        
         return(
             <div>
-                <div className="LoginForm">
+                <div className={`LoginForm ${isLogin && 'disable'}`}>
                     <button className="Register" onClick={this.handleResShow}>Register</button>
                     <button className="Login" onClick={this.handleLoginShow}>Log In</button>
                 </div>
 
-                <div className="User-form">
-                    <img src={process.env.PUBLIC_URL + '/images/img1.jpg'} class="userIMG" alt="user-images"/>
+                <div className={`User-form ${isLogin && 'enable'}`}>
+                    {user && <img src={process.env.PUBLIC_URL + user.image} class="userIMG" alt="user-images"/>}
                     <div className="User-Info">
                         <div>Account setting</div>
-                        <div>Logout</div>
+                        <div onClick={this.handleLogoutEvent}>Logout</div>
                     </div>
                 </div>
 
                 {/* ______________________________________________________________________________________________________ */}
                 {/*  Login The Modal  */}
-                <div className="modal" style={{display:this.state.loginshow}} onClick={this.handleLoginClose}></div>
+                <div id={`Modal${isLogin || ((loginshow && 'Login')|| '') }`} className="modal" onClick={this.handleLoginClose}></div>
                 {/*  Modal content */}
-                <div id="LoginModal" className="modal-content" style={{display:this.state.loginshow}}>
+                <div id={`LoginModal${isLogin || ((loginshow && 'enable') || '' )}`} className="modal-content">
                     <div className="close" onClick={this.handleLoginClose}>&times;</div>
                     <div className="title">Log In</div>
                     {/* Content Here */}
@@ -175,10 +200,10 @@ class loginform extends Component {
                 </div>
                 {/* ______________________________________________________________________________________________________ */}
                 {/*  Register The Modal  */}
-                <div className="modal" style={{display:this.state.resshow}} onClick={this.handleResClose}></div>
+                <div id={`Modal${isLogin || ((resshow && 'Register')|| '' )}`} className="modal" onClick={this.handleResClose}></div>
                 {/*  Modal content */}
                 <div>
-                    <div id="RegisterModal" className="modal-content" style={{display:this.state.resshow}}>
+                    <div id={`RegisterModal${isLogin || ((resshow && 'enable') || '') }`} className="modal-content">
                         <div className="close" onClick={this.handleResClose}>&times;</div>
                         <div className="title">Register</div>
                         {/* Content Here */}
@@ -213,10 +238,10 @@ class loginform extends Component {
                 </div>
                 {/* ______________________________________________________________________________________________________ */}
                 {/*  Forgot Password The Modal  */}
-                <div className="modal" style={{display:this.state.forgotshow}}></div>
+                <div id={`Modal${(forgotshow && 'Forgot')|| '' }`} className="modal" onClick={this.handleForgotClose}></div>
                 {/*  Modal content */}
                 <div>
-                    <div id="ForgotModal" className="modal-content" style={{display:this.state.forgotshow}}>
+                    <div id={`ForgotModal${(forgotshow && 'enable') || '' }`} className="modal-content">
                         <div className="close" onClick={this.handleForgotClose}>&times;</div>
                         <div className="title">Forgot Password</div>
                         <div className="instructor">Enter your e-mail address below and we’ll get you back on track.</div>
@@ -255,7 +280,7 @@ const mapDispatchToProps = (dispatch)=> {
         },
         RegisterUser: (user) => {
             dispatch(Register(user))
-        }
+        },
     }
 }
 
