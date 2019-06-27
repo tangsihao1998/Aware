@@ -5,64 +5,74 @@ import './login.scss'
 import { connect } from 'react-redux';
 import { LogIn }  from '../../../actions/authentication';
 import { Register } from '../../../actions/authentication';
-
+import { LogOut } from '../../../actions/authentication';
 class loginform extends Component {
+    // Constructor of Component
     constructor(props) {
         super(props);
         this.state={
             forgotshow: false,
             resshow: false,
             loginshow: false,
+            infoshow: false,
             username:'',
             email:'',
             password:'',
             errors:'',
         };
     }
+
     // Handle Input Text
     handleTextChange = (e) => {
         const { name, value } = e.target;
         this.setState({ [name]: value });
     }
-    // Handle Login Modal
-    handleLoginClose = () =>{
-        this.setState({ 
-            loginshow: false,
-            email:'',
-            password:'',
-            errors:''
-        });
-    }
-    handleLoginShow = () => { 
-        this.setState({ 
-            loginshow: true, 
-            errors:''
-        });
+    //--------------------------------------------------------------------------
+    // Handle Login Modal Show OR Close
+    handleLoginShow = () =>{
+        if(this.state.loginshow === true){
+            this.setState({ 
+                loginshow: false,
+                email:'',
+                password:'',
+                errors:''
+            });
+        }
+        else{
+            this.setState({ 
+                loginshow: true, 
+                errors:''
+            });
+        }
     }
     //------------------------------------------------------------------------------
-    // Handle Register Modal
+    // Handle Register Modal Show OR Close
     handleResShow = () => { 
-        this.setState({ 
-            resshow: true,
-            errors:''
-        });
-    }
-    handleResClose = () =>{
-        this.setState({
-            resshow: false,
-            username:'',
-            email:'',
-            password:'',
-            errors:''
-        });
+        if(this.state.resshow === false){
+            this.setState({ 
+                resshow: true,
+                errors:''
+            });
+        }
+        else{
+            this.setState({
+                resshow: false,
+                username:'',
+                email:'',
+                password:'',
+                errors:''
+            });
+        }
     }
     //------------------------------------------------------------------------------
-    //Handle ForgotPassword Modal
-    handleForgotClose = () => { 
-        this.setState({ 
-            forgotshow: false,
-            errors:''
-        });
+    //Handle Forgot Password Modal Show OR CLOSE
+    handleForgotShow = () => {
+        if(this.state.forgotshow === true){
+            this.setState({ 
+                forgotshow: false,
+                errors:''
+            });
+        } 
     }
     //------------------------------------------------------------------------------
     // Change Modal With Button 
@@ -103,7 +113,22 @@ class loginform extends Component {
         });
     }
     //-----------------------------------------------------------------------------------------------------
-    // Handle Submit Register Event
+    // USER-SETTINGS SHOW
+    HandleUserSetting = () =>{
+        if(this.state.infoshow === false){
+            this.setState({
+                infoshow:true,
+            });
+        }
+        else{
+            this.setState({
+                infoshow:false,
+            });
+        }
+    }
+
+    // Handle EVENT 
+    // Handle Register Event
     handleRegister = (e) =>{
         e.preventDefault();
         const user = { 
@@ -111,6 +136,13 @@ class loginform extends Component {
             email: this.state.email,
             password: this.state.password
         }
+        // Set Default State after REGISTER
+        this.setState({
+            username:'',
+            email: '',
+            password: '',
+            resshow: false
+        });
         this.props.RegisterUser(user);       
     }
 
@@ -120,13 +152,23 @@ class loginform extends Component {
         const user = {
             email: this.state.email,
             password: this.state.password
-        }
+        };
+         // Set Default State after LOGIN
+        this.setState({
+            email: '',
+            password: '',
+            loginshow: false
+        });
         this.props.Login(user);
     }
 
     // Handle Log Out Event
     handleLogoutEvent = (e) =>{
-
+        e.preventDefault();
+        this.setState({
+            infoshow:false,
+        });
+        this.props.LogoutUser();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -141,8 +183,10 @@ class loginform extends Component {
         console.log(this.props);
 
         // Declare Variables
+        // Props
         const {isLogin} = this.props;
         const {user} = this.props;
+        // State
         const {errors} = this.state;
         const {password} = this.state;
         const {email} = this.state;
@@ -150,28 +194,33 @@ class loginform extends Component {
         const {loginshow}= this.state;
         const {resshow} = this.state;
         const {forgotshow} = this.state;
-        
+        const {infoshow} = this.state;
+        //-----------------------------------------------------------
+
         return(
             <div>
+                {/* Content In NAVBAR before LOGIN */}
                 <div className={`LoginForm ${isLogin && 'disable'}`}>
                     <button className="Register" onClick={this.handleResShow}>Register</button>
                     <button className="Login" onClick={this.handleLoginShow}>Log In</button>
                 </div>
 
+                {/* Content In NAVBAR after LOGIN */}
                 <div className={`User-form ${isLogin && 'enable'}`}>
-                    {user && <img src={process.env.PUBLIC_URL + user.image} class="userIMG" alt="user-images"/>}
-                    <div className="User-Info">
+                    {user && <img src={process.env.PUBLIC_URL + user.image} class="userIMG" alt="user-images" onClick={this.HandleUserSetting}/>}
+                    <div id={`Info${(infoshow && 'Show')|| '' }`} className="User-Info">
                         <div>Account setting</div>
                         <div onClick={this.handleLogoutEvent}>Logout</div>
                     </div>
                 </div>
 
+                {/* ALL MODAL OF LOGIN FORM */}
                 {/* ______________________________________________________________________________________________________ */}
                 {/*  Login The Modal  */}
-                <div id={`Modal${isLogin || ((loginshow && 'Login')|| '') }`} className="modal" onClick={this.handleLoginClose}></div>
+                <div id={`Modal${isLogin || ((loginshow && 'Login')|| '') }`} className="modal" onClick={this.handleLoginShow}></div>
                 {/*  Modal content */}
                 <div id={`LoginModal${isLogin || ((loginshow && 'enable') || '' )}`} className="modal-content">
-                    <div className="close" onClick={this.handleLoginClose}>&times;</div>
+                    <div className="close" onClick={this.handleLoginShow}>&times;</div>
                     <div className="title">Log In</div>
                     {/* Content Here */}
                     <div className="box-content">
@@ -199,12 +248,13 @@ class loginform extends Component {
                     </div>
                 </div>
                 {/* ______________________________________________________________________________________________________ */}
+
                 {/*  Register The Modal  */}
-                <div id={`Modal${isLogin || ((resshow && 'Register')|| '' )}`} className="modal" onClick={this.handleResClose}></div>
+                <div id={`Modal${isLogin || ((resshow && 'Register')|| '' )}`} className="modal" onClick={this.handleResShow}></div>
                 {/*  Modal content */}
                 <div>
                     <div id={`RegisterModal${isLogin || ((resshow && 'enable') || '') }`} className="modal-content">
-                        <div className="close" onClick={this.handleResClose}>&times;</div>
+                        <div className="close" onClick={this.handleResShow}>&times;</div>
                         <div className="title">Register</div>
                         {/* Content Here */}
                         <div className="box-content">
@@ -237,12 +287,13 @@ class loginform extends Component {
                     </div>
                 </div>
                 {/* ______________________________________________________________________________________________________ */}
+
                 {/*  Forgot Password The Modal  */}
-                <div id={`Modal${(forgotshow && 'Forgot')|| '' }`} className="modal" onClick={this.handleForgotClose}></div>
+                <div id={`Modal${(forgotshow && 'Forgot')|| '' }`} className="modal" onClick={this.handleForgotShow}></div>
                 {/*  Modal content */}
                 <div>
                     <div id={`ForgotModal${(forgotshow && 'enable') || '' }`} className="modal-content">
-                        <div className="close" onClick={this.handleForgotClose}>&times;</div>
+                        <div className="close" onClick={this.handleForgotShow}>&times;</div>
                         <div className="title">Forgot Password</div>
                         <div className="instructor">Enter your e-mail address below and we’ll get you back on track.</div>
                         {/* Content Here */}
@@ -260,6 +311,8 @@ class loginform extends Component {
                         </div>
                     </div>
                 </div>
+                {/* __________________________________________________________________________________________________________________________________ */}
+
             </div>
         )
     }
@@ -281,6 +334,9 @@ const mapDispatchToProps = (dispatch)=> {
         RegisterUser: (user) => {
             dispatch(Register(user))
         },
+        LogoutUser: () =>{
+            dispatch(LogOut())
+        }
     }
 }
 

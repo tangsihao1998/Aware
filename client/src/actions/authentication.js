@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ERRORS , SET_CURRENT_USER} from './type';
+import { GET_ERRORS , SET_CURRENT_USER , LOG_OUT} from './type';
 import { api } from '../helpers/API';
 import { setAuthToken }  from '../helpers/API';
 import jwt_decode from 'jwt-decode';
@@ -50,3 +50,13 @@ export const setCurrentUser = (decoded) => {
     }
 }
 
+export const LogOut = () => dispatch =>{
+    localStorage.removeItem('jwtToken');
+    setAuthToken(false);
+    dispatch({
+        type: LOG_OUT,
+        payload: {
+            user:''
+        }
+    });
+}
