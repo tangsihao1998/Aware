@@ -24,7 +24,7 @@
             flex-direction: column;
             .headflex{
                 @include flexbetween;
-                padding-bottom:13px;
+                padding: 0px 10px;
                 .sortby{
                     display: flex;  
                     border: 1px solid #d4d3d3;

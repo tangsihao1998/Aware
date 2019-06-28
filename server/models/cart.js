@@ -4,9 +4,11 @@ const mongoose = require('mongoose');
 //Create Schema
 var cart = mongoose.Schema({
     quantity: Number,
-    Color: String,
-    Size:{type: String, max: 1},
-    
+    color: String,
+    size:{type: String, max: 1},
+    checkout: Boolean,
+    productID: {type: mongoose.Schema.Types.ObjectId ,ref:'product'},
+    userID: {type: mongoose.Schema.Types.ObjectId, ref:'user'}
 });
 
 module.exports = mongoose.model('cart', cart);
