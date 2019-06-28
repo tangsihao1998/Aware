@@ -44,9 +44,7 @@ controller.findOneBrand = async(data) => {
 controller.UpdateProductID = async (productID,brandID) => {
     try {
         const preUpdate = await Brand.findById(brandID,'product_id');
-        console.log(preUpdate.product_id)
         const newListProductID = preUpdate.product_id.concat(productID);
-        console.log(newListProductID);
         
         const updated = await Brand.findByIdAndUpdate(brandID,{product_id: newListProductID});
         console.log(updated);

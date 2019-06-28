@@ -44,9 +44,7 @@ controller.findOneSize = async(data) => {
 controller.UpdateProductID = async (productID,SizeID) => {
     try {
         const preUpdate = await Size.findById(SizeID,'product_id');
-        console.log(preUpdate.product_id)
         const newListProductID = preUpdate.product_id.concat(productID);
-        console.log(newListProductID);
         
         const updated = await Size.findByIdAndUpdate(SizeID,{product_id: newListProductID});
         console.log(updated);

@@ -58,7 +58,7 @@ controller.findProduct = async (req,res,next) => {
 controller.AddProduct = async (product) => {
     try {
         const newproduct = await Productdata.create(product);
-        console.log(newproduct)
+        // console.log(newproduct)
         if(!newproduct){
             return false;
         }

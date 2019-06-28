@@ -5,7 +5,7 @@ var router = express.Router();
 var category_controller = require('../controller/ApiCategoryController');
 
 //Category Routes
-router.get('/',category_controller.category_list);
+// router.get('/',category_controller.category_list);
 
 module.exports = router;
 

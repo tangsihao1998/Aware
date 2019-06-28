@@ -2,7 +2,7 @@
 var Color = require('../models/color');
 let controller ={};
 
-// Create Data for Size If The New Size doesn't in DB
+// Create Data for Color If The New Color doesn't in DB
 controller.AddColor = async(data) => {
     try {           
         const checkColor = await controller.findOneColor(data);
@@ -26,7 +26,7 @@ controller.AddColor = async(data) => {
     }
 }
 
-// Find One Data Using Size Name
+// Find One Data Using Color Name
 controller.findOneColor = async(data) => {
     try {
         const color = await Color.findOne({color:data});
@@ -40,13 +40,11 @@ controller.findOneColor = async(data) => {
     }
 }
 
-// Find One and Update By Using Size ID
+// Find One and Update By Using Color ID
 controller.UpdateProductID = async (productID,ColorID) => {
     try {
         const preUpdate = await Color.findById(ColorID,'product_id');
-        console.log(preUpdate.product_id)
         const newListProductID = preUpdate.product_id.concat(productID);
-        console.log(newListProductID);
         
         const updated = await Color.findByIdAndUpdate(ColorID,{product_id: newListProductID});
         console.log(updated);
