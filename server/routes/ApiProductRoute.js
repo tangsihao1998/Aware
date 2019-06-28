@@ -28,6 +28,8 @@ router.get('/count',async(req,res) => {
 
 router.post('/add', async (req,res) => {
 
+    // Check If Product Is In the DB then Update IF NOT CREATE IT 
+
     let product = {
         imgs: req.body.imgs,
         name: req.body.name,
@@ -62,7 +64,6 @@ router.post('/add', async (req,res) => {
     product.color = ColorID;
 
     let newproduct = await product_controller.AddProduct(product);
-    console.log(newproduct._id);
 
     // Update ProductID for each Model
     let brandupdate = await brand_controller.UpdateProductID(newproduct._id,BrandID);
@@ -76,13 +77,20 @@ router.post('/add', async (req,res) => {
         let categoryupdate = await category_controller.UpdateProductID(newproduct._id,CategoryID[i]);
     }
 
+    console.log(newproduct)
     if(newproduct){
        return res.json(newproduct); 
     }
     return false;
 });
 
-router.get('/:id',product_controller.findProduct);
+router.get('/:id', async (req,res) => {
+    const ReturnPRODUCT = await product_controller.findProduct(req.params.id);
+    if(ReturnPRODUCT){
+        res.json(ReturnPRODUCT);
+    }
+    return false;
+});
 
 
 module.exports = router;

@@ -40,18 +40,18 @@ controller.findOneCategory = async(data) => {
     }
 }
 
-// Find One and Update By Using Size ID
+// Find One and Update By Using Category ID
 controller.UpdateProductID = async (productID,CategoryID) => {
     try {
         const preUpdate = await Category.findById(CategoryID,'product_id');
         const newListProductID = preUpdate.product_id.concat(productID);
-        
         const updated = await Category.findByIdAndUpdate(CategoryID,{product_id: newListProductID});
-        console.log(updated);
     } catch (error) {
         console.log(error)
         return false;
     }
 }
+
+// Create Find Product With Category Filter
 
 module.exports = controller;

@@ -38,16 +38,14 @@ controller.ProductCount = async() =>{
 }
 
 // Find Product 
-controller.findProduct = async (req,res,next) => {
+controller.findProduct = async (id) => {
     try {
-        const id = req.params.id;
-        await Productdata.findById(id).populate('categories').exec(function (err,product){
-            if(err) {
-                return next(err);
-            }
-            res.send(product);
-        });
-        return true;
+        const ReProduct = await Productdata.findById(id).populate('categories').populate('color').populate('size').populate('brand');
+        console.log(ReProduct);
+        if(ReProduct){
+            return ReProduct;
+        }
+        return false;
     } catch (error) {
         console.log(err);
         return false;

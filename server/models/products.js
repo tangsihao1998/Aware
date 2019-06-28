@@ -11,7 +11,8 @@ var product = mongoose.Schema({
     size: [{type: mongoose.Schema.Types.ObjectId ,ref:'size'}],
     color: [{type: mongoose.Schema.Types.ObjectId ,ref:'color'}],
     quantity: Number,
-    description: String
+    description: String,
+    createDate: {type: Date, default: Date.now}
 });
 
 module.exports = mongoose.model('product', product);

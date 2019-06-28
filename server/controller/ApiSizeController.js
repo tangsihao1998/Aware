@@ -45,13 +45,13 @@ controller.UpdateProductID = async (productID,SizeID) => {
     try {
         const preUpdate = await Size.findById(SizeID,'product_id');
         const newListProductID = preUpdate.product_id.concat(productID);
-        
         const updated = await Size.findByIdAndUpdate(SizeID,{product_id: newListProductID});
-        console.log(updated);
     } catch (error) {
         console.log(error)
         return false;
     }
 }
+
+// Create Find Product By Size Filter
 
 module.exports = controller;

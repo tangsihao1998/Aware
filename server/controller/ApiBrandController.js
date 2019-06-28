@@ -45,13 +45,13 @@ controller.UpdateProductID = async (productID,brandID) => {
     try {
         const preUpdate = await Brand.findById(brandID,'product_id');
         const newListProductID = preUpdate.product_id.concat(productID);
-        
         const updated = await Brand.findByIdAndUpdate(brandID,{product_id: newListProductID});
-        console.log(updated);
     } catch (error) {
         console.log(error)
         return false;
     }
 }
+
+// Create Find Product with Brand Filter
 
 module.exports = controller;

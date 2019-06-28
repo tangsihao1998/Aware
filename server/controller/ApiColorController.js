@@ -45,13 +45,13 @@ controller.UpdateProductID = async (productID,ColorID) => {
     try {
         const preUpdate = await Color.findById(ColorID,'product_id');
         const newListProductID = preUpdate.product_id.concat(productID);
-        
         const updated = await Color.findByIdAndUpdate(ColorID,{product_id: newListProductID});
-        console.log(updated);
     } catch (error) {
         console.log(error)
         return false;
     }
 }
+
+//Create Find Product By Color Filter 
 
 module.exports = controller;
