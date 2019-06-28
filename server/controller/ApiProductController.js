@@ -55,17 +55,16 @@ controller.findProduct = async (req,res,next) => {
 }
 
 // Add New Product
-controller.AddProduct = async (req,res,next) => {
+controller.AddProduct = async (product) => {
     try {
-        await Productdata.create({imgs:['/images/img1.jpg','/images/img1.jpg','/images/img1.jpg','/images/img1.jpg'],
-            name:'Collete Stretch Linen Minidress',brand:'Zara',price:19000,size:['M'],
-            color:['red','green','blue'],quantity:200,description:'Best Sellers'},function(err,productda){
-              if(err) {return console.log(err)};
-        });
-        res.send('Hello It Me');
-        return true;
+        const newproduct = await Productdata.create(product);
+        console.log(newproduct)
+        if(!newproduct){
+            return false;
+        }
+        return newproduct;
     } catch (error) {
-        console.log(err);
+        console.log(error);
         return false;
     }
 };
