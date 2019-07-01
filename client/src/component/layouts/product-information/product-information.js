@@ -40,7 +40,7 @@ class productinformation extends Component {
         const cartProduct = {
             productID: _id,
             // Change On Screen
-            color:'red',
+            color:'Red',
             size:'S',
             // Static
             quantity:quantity,

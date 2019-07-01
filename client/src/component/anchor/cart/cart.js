@@ -39,7 +39,7 @@ class cart extends Component {
     render() {
         const {listproduct} = this.props;
         const {dropshow} = this.state;
-        // Show Product In Local Storage
+        // Show Product From Local Storage
         const showProduct = listproduct && listproduct.length ? (listproduct.map(product =>{
             return (
                 <div className="cart-row">

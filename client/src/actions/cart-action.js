@@ -1,6 +1,5 @@
 import { GET_CART} from './type';
 import { api } from '../helpers/API';
-import product from '../page/product/product';
 
 export const AddToCart = (cart) => dispatch =>{
     // Cart = List Product
@@ -37,4 +36,18 @@ export const GetCartFromLocal = () => dispatch =>{
             cartProduct: products,
         }
     })
+}
+
+export const IncreaseQuantity = (position) => dispatch =>{
+    let list = JSON.parse(localStorage.getItem('listproduct'));
+    list[position].quantity = list[position].quantity + 1;
+    localStorage.setItem('listproduct', JSON.stringify(list));
+    dispatch(GetCartFromLocal());
+}
+
+export const DecreaseQuantity = (position) => dispatch =>{
+    let list = JSON.parse(localStorage.getItem('listproduct'));
+    list[position].quantity = list[position].quantity - 1;
+    localStorage.setItem('listproduct', JSON.stringify(list));
+    dispatch(GetCartFromLocal());
 }
