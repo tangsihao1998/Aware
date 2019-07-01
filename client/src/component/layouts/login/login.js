@@ -3,9 +3,8 @@ import './login.scss'
 // import { Modal } from 'react-bootstrap'
 
 import { connect } from 'react-redux';
-import { LogIn }  from '../../../actions/authentication';
-import { Register } from '../../../actions/authentication';
-import { LogOut } from '../../../actions/authentication';
+import { LogIn, Register, LogOut }  from '../../../actions/authentication';
+
 class loginform extends Component {
     // Constructor of Component
     constructor(props) {

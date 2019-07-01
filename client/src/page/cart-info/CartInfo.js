@@ -42,9 +42,9 @@ class cartinfo extends Component {
                                     <td><div className="size">S</div></td>
                                     <td>
                                         <div className="quantity-picker">
-                                            <div className="decrease">-</div>
+                                            <div className="quantity-button">-</div>
                                             <div className="quantity-pro">0</div>
-                                            <div className="increase">+</div>
+                                            <div className="quantity-button">+</div>
                                         </div>
                                     </td>
                                     <td>$69.00</td>
@@ -65,9 +65,9 @@ class cartinfo extends Component {
                                     <td><div className="size">S</div></td>
                                     <td>
                                         <div className="quantity-picker">
-                                            <div className="decrease">-</div>
+                                            <div className="quantity-button">-</div>
                                             <div className="quantity-pro">0</div>
-                                            <div className="increase">+</div>
+                                            <div className="quantity-button">+</div>
                                         </div>
                                     </td>
                                     <td>$69.00</td>

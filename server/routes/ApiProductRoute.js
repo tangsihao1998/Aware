@@ -30,16 +30,29 @@ router.post('/add', async (req,res) => {
 
     // Check If Product Is In the DB then Update IF NOT CREATE IT 
 
+    const {
+        imgs,
+        name,
+        brand,
+        price,
+        size,
+        color,
+        categories,
+        quantity,
+        description,
+    } = req.body;
+    
+    // Create a product to add in DB
     let product = {
-        imgs: req.body.imgs,
-        name: req.body.name,
-        brand: req.body.brand,
-        price: req.body.price,
-        size: req.body.size,
-        color: req.body.color,
-        categories: req.body.categories,
-        quantity: req.body.quantity,
-        description: req.body.description
+        imgs,
+        name,
+        brand,
+        price,
+        size,
+        color,
+        categories,
+        quantity,
+        description
     };
     
     let BrandID = await brand_controller.AddBrand(product.brand);

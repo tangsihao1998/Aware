@@ -5,36 +5,83 @@ import Rater from 'react-rater'
 import 'react-rater/lib/react-rater.css'
 import './product-information.scss'
 
+// Redux
+import { connect } from 'react-redux';
+import {AddToCart} from '../../../actions/cart-action';
+
+
 class productinformation extends Component {
     constructor(props) {
         super(props);
-        this.state={};
+        this.state={
+            quantity: 0,
+        };
     }
+
+    // User Choose Quantity
+    DeQuantity = () => {
+        if(this.state.quantity > 0){
+            this.setState({
+                quantity: this.state.quantity -1,
+            })
+        }
+    }
+
+    InQuantity = () => {
+        this.setState({
+            quantity: this.state.quantity +1,
+        })
+    }
+    // --------------------------------------------------------------------------------------------------------------
+
+    handleADDTOCART = () =>{
+        const {_id,price,name,imgs} = this.props.product;
+        const {quantity} = this.state;
+        const cartProduct = {
+            productID: _id,
+            // Change On Screen
+            color:'red',
+            size:'S',
+            // Static
+            quantity:quantity,
+            price: price,
+            name: name,
+            img: imgs[0]
+        }
+
+        this.props.Addtocart(cartProduct);
+    }   
+    // --------------------------------------------------------------------------------------------------------------
+
     render() {
         console.log(this.props);
+        const {imgs} = this.props.product;
+        const {name} = this.props.product;
+        const {price} = this.props.product;
+        const {quantity} = this.state;
         return (
             // { Product Information }
             <div className="maincontent">
                 {/* Some Image of product */}
                 <div className="leftside-img">
-                    <img src={process.env.PUBLIC_URL + this.props.product.imgs[0]} alt="Product Image" className="Image"/>
-                    <img src={process.env.PUBLIC_URL + this.props.product.imgs[1]} alt="Product Image" className="Image"/>
-                    <img src={process.env.PUBLIC_URL + this.props.product.imgs[2]} alt="Product Image" className="Image"/>
-                    <img src={process.env.PUBLIC_URL + this.props.product.imgs[3]} alt="Product Image" className="Image"/>
+                    <img src={process.env.PUBLIC_URL + imgs[0]} alt="Product Image" className="Image"/>
+                    <img src={process.env.PUBLIC_URL + imgs[1]} alt="Product Image" className="Image"/>
+                    <img src={process.env.PUBLIC_URL + imgs[2]} alt="Product Image" className="Image"/>
+                    <img src={process.env.PUBLIC_URL + imgs[3]} alt="Product Image" className="Image"/>
                 </div>
                 {/* Main Image of Product */}
                 <div className="main-img">
-                    <img src={process.env.PUBLIC_URL + this.props.product.imgs[0]} alt="Product Image" className="Main-Image"/>
+                    <img src={process.env.PUBLIC_URL + imgs[0]} alt="Product Image" className="Main-Image"/>
                 </div>
                 {/* Product information part */}
                 <div className="product-infomation">
                     {/* Product name */}
                     <div className="productname">
-                        {this.props.product.name}
+                        {name}
                     </div>
                     {/* Product Price */}
                     <div className="productprice">
-                        ${this.props.product.price}
+                        ${price}
                     </div>
                     {/* Product rating */}
                     <div className="productrate">
@@ -57,13 +104,13 @@ class productinformation extends Component {
                     <div className="productquantity">
                         <div className="quantity">Quantity</div>
                         <div className="quantity-picker">
-                            <div className="decrease">-</div>
-                            <div className="quantity-pro">0</div>
-                            <div className="increase">+</div>
+                            <div className="quantity-button" onClick={this.DeQuantity}>-</div>
+                            <div className="quantity-pro">{quantity}</div>
+                            <div className="quantity-button" onClick={this.InQuantity}>+</div>
                         </div>
                     </div>
                     {/* Add to cart button */}
-                    <button> Add to cart</button>
+                    <button onClick={this.handleADDTOCART}> Add to cart</button>
                     <hr></hr>
                     {/* Description about product */}
                     <div className="sizeinfo">
@@ -87,4 +134,21 @@ class productinformation extends Component {
         )
     }
 }
-export default productinformation;
+
+const mapStateToProps = (state) => {
+    return {
+        // errors: state.AuthReducer.error,
+        // isLogin: state.AuthReducer.isAuthenticated,
+        // user: state.AuthReducer.user,
+    }
+}
+
+const mapDispatchToProps = (dispatch)=> {
+    return {
+        Addtocart: (cart) => {
+            dispatch(AddToCart(cart));
+        },
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps) (productinformation);

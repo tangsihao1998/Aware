@@ -28,31 +28,35 @@
                 border-top: 1px solid #979797;
             }
             tr th{
-                width: 3.2%;
+                width: 30px;
                 font-size: 14px;
                 font-weight: bold;
                 line-height: 1.57;
                 color:#202124;
-                padding-right:10.67%;
+                padding-right: 83px;
                 padding-bottom: 10px;
                 &:first-child{
-                    width: 100%;
+                    width: 210px;
                     text-align: left;
+                    margin-right: 83px;
+                    padding-right: 0px;
                 }
                 &:last-child{
                     padding-right:0;
                 }
             }
             tr td{
-                width: 3.2%;
+                width: 30px;
                 text-align: center;
-                padding-right:10.67%;
+                padding-right:83px;
                 padding-top: 10px;
                 padding-bottom: 10px;
                 &:first-child{
-                    width: 100%;
+                    width: 210px;
                     text-align: left;
                     display:flex;
+                    margin-right: 83px;
+                    padding-right: 0px;
                 }
                 &:last-child{
                     font-size: 16px;
@@ -89,22 +93,17 @@
                 font-weight: 500;
                 font-size: 14px;
                 border: 1px solid #d4d3d3;
-                .decrease{
+                .quantity-button{
                     height:24px;
                     width: 24px;
                     margin: 9px 8px;
                     text-align: center;
+                    cursor: pointer;
                 }
                 .quantity-pro{
                     height:24px;
                     width: 24px;
                     margin: 9px 5px;
-                    text-align: center;
-                }
-                .increase{
-                    height:24px;
-                    width: 24px;
-                    margin: 9px 8px;
                     text-align: center;
                 }
             }

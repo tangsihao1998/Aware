@@ -80,19 +80,14 @@
                 font-weight: 500;
                 font-size: 14px;
                 border: 1px solid #d4d3d3;
-                .decrease{
+                .quantity-button{
                     height:24px;
                     width: 24px;
                     margin: 9px;
                     text-align: center;
+                    cursor: pointer;
                 }
                 .quantity-pro{
-                    height:24px;
-                    width: 24px;
-                    margin: 9px;
-                    text-align: center;
-                }
-                .increase{
                     height:24px;
                     width: 24px;
                     margin: 9px;
