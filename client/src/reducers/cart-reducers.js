@@ -7,13 +7,6 @@ export default function(state = {listproduct:[]}, action ) {
                 listproduct: action.payload.cartProduct,
             }
         }
-        // case SET_CURRENT_USER:{
-        //     return {
-        //         error: action.payload.error,
-        //         user: action.payload.user,
-        //         isAuthenticated: !isEmpty(action.payload),
-        //     }
-        // }
         default: 
             return state;
     }

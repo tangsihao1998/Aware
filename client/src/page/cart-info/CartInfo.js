@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
 
 import {connect} from 'react-redux';
-import {GetCartFromLocal,IncreaseQuantity,DecreaseQuantity} from '../../actions/cart-action';
+import {GetCartFromLocal,IncreaseQuantity,DecreaseQuantity,RemoveProduct} from '../../actions/cart-action';
 import './CartInfo.scss'
 
 class cartinfo extends Component {
+    // Constructor
     constructor(props){
         super(props);
         this.state={
+            total:0
         }
     }
+
+    // ----------------------------------------------------------------------------------------
     // Handle Decrease Increase Quantity Of Product
     handleDecreaseQuantity = (index) => {
         if(this.props.listproduct[index].quantity > 1){
@@ -21,12 +25,24 @@ class cartinfo extends Component {
         this.props.increaseQuantity(index);
     }
     // ----------------------------------------------------------------------------------------
+    // Handle Remove Product
+    handleRemoveProduct = (index) =>{
+        this.props.remove(index);
+    }
+    // ----------------------------------------------------------------------------------------
+    // Handle Check Out
+    handleCheckOut = () => {
 
+    }
+    // ----------------------------------------------------------------------------------------
+    
     render() {
         const {listproduct} = this.props;
         // Show Product From Local Storage
+        let {total} = this.state;
         const showProduct = listproduct && listproduct.length ? (listproduct.map((product,index) =>{
             console.log(index);
+            total = total + (product.price * product.quantity);
             return (
                 <tr className="productShow">
                     <td>
@@ -36,7 +52,7 @@ class cartinfo extends Component {
                             <div className="Action">
                                 <div>Change</div>
                                 <div className="line"></div>
-                                <div>Remove</div>
+                                <div onClick={this.handleRemoveProduct.bind(this,index)}>Remove</div>
                             </div>
                         </div>
                     </td>
@@ -81,15 +97,15 @@ class cartinfo extends Component {
                                 </div>
                                 <div className="price-row">
                                     <div>Total product:</div>
-                                    <div>$6.900</div>
+                                    <div>${total}</div>
                                 </div>
                                 <div className="line"></div>
                                 <div className="price-row">
                                     <div>Subtotal:</div>
-                                    <div>$6.900</div>
+                                    <div>${total}</div>
                                 </div>
                             </div>
-                            <button onClick="">Check out</button>
+                            <button onClick={this.handleCheckOut}>Check out</button>
                         </div>
                     </div>
                 </div>
@@ -114,8 +130,10 @@ const mapDispatchToProps = (dispatch)=> {
         },
         decreaseQuantity: (position) =>{
             dispatch(DecreaseQuantity(position));
+        },
+        remove: (position) => {
+            dispatch(RemoveProduct(position));
         }
-        
     }
 }
 

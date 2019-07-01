@@ -28,16 +28,6 @@ export const AddToCart = (cart) => dispatch =>{
     dispatch(GetCartFromLocal());
 } 
 
-export const GetCartFromLocal = () => dispatch =>{
-    const products= JSON.parse(localStorage.getItem('listproduct'));
-    dispatch({
-        type:GET_CART,
-        payload:{
-            cartProduct: products,
-        }
-    })
-}
-
 export const IncreaseQuantity = (position) => dispatch =>{
     let list = JSON.parse(localStorage.getItem('listproduct'));
     list[position].quantity = list[position].quantity + 1;
@@ -51,3 +41,21 @@ export const DecreaseQuantity = (position) => dispatch =>{
     localStorage.setItem('listproduct', JSON.stringify(list));
     dispatch(GetCartFromLocal());
 }
+
+export const RemoveProduct = (position) => dispatch =>{
+    let list = JSON.parse(localStorage.getItem('listproduct'));
+    list.splice(position,1);
+    localStorage.setItem('listproduct', JSON.stringify(list));
+    dispatch(GetCartFromLocal());
+}
+
+export const GetCartFromLocal = () => dispatch =>{
+    const products= JSON.parse(localStorage.getItem('listproduct'));
+    dispatch({
+        type:GET_CART,
+        payload:{
+            cartProduct: products,
+        }
+    })
+}
+
