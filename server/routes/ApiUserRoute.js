@@ -67,7 +67,7 @@ router.post('/login', async (req,res)=>{
             else{
                 res.json({
                     success: true,
-                    token: `Bearer ${token}`,
+                    token: `${token}`,
                     error: ''
                 });
             }

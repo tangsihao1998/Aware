@@ -4,6 +4,7 @@ import './login.scss'
 
 import { connect } from 'react-redux';
 import { LogIn, Register, LogOut }  from '../../../actions/authentication';
+import {CheckOut} from '../../../actions/cart-action';
 
 class loginform extends Component {
     // Constructor of Component
@@ -175,6 +176,11 @@ class loginform extends Component {
                 resshow: false
             })
         }
+        if (this.props.checkout !== prevProps.checkout){
+            this.setState({
+                loginshow: this.props.checkout,
+            })
+        }
     }
 
     render(){
@@ -194,7 +200,6 @@ class loginform extends Component {
         const {forgotshow} = this.state;
         const {infoshow} = this.state;
         //-----------------------------------------------------------
-
         return(
             <div>
                 {/* Content In NAVBAR before LOGIN */}
@@ -215,9 +220,9 @@ class loginform extends Component {
                 {/* ALL MODAL OF LOGIN FORM */}
                 {/* ______________________________________________________________________________________________________ */}
                 {/*  Login The Modal  */}
-                <div id={`Modal${isLogin || ((loginshow && 'Login')|| '') }`} className="modal" onClick={this.handleLoginShow}></div>
+                <div id={`Modal${isLogin || ((loginshow && 'Login')||  '' ) }`} className="modal" onClick={this.handleLoginShow}></div>
                 {/*  Modal content */}
-                <div id={`LoginModal${isLogin || ((loginshow && 'enable') || '' )}`} className="modal-content">
+                <div id={`LoginModal${isLogin || ((loginshow && 'enable') || '' ) }`} className="modal-content">
                     <div className="close" onClick={this.handleLoginShow}>&times;</div>
                     <div className="title">Log In</div>
                     {/* Content Here */}
@@ -321,6 +326,7 @@ const mapStateToProps = (state) => {
         errors: state.AuthReducer.error,
         isLogin: state.AuthReducer.isAuthenticated,
         user: state.AuthReducer.user,
+        checkout: state.CartReducer.checkout,
     }
 }
 

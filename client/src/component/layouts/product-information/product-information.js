@@ -46,7 +46,8 @@ class productinformation extends Component {
             quantity:quantity,
             price: price,
             name: name,
-            img: imgs[0]
+            img: imgs[0],
+            userID:''
         }
 
         this.props.Addtocart(cartProduct);

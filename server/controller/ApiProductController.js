@@ -41,7 +41,7 @@ controller.ProductCount = async() =>{
 controller.findProduct = async (id) => {
     try {
         const ReProduct = await Productdata.findById(id).populate('categories').populate('color').populate('size').populate('brand');
-        console.log(ReProduct);
+        // console.log(ReProduct);
         if(ReProduct){
             return ReProduct;
         }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import {connect} from 'react-redux';
-import {GetCartFromLocal,IncreaseQuantity,DecreaseQuantity,RemoveProduct} from '../../actions/cart-action';
+import {GetCartFromLocal,IncreaseQuantity,DecreaseQuantity,RemoveProduct,CheckOut} from '../../actions/cart-action';
 import './CartInfo.scss'
 
 class cartinfo extends Component {
@@ -32,7 +32,7 @@ class cartinfo extends Component {
     // ----------------------------------------------------------------------------------------
     // Handle Check Out
     handleCheckOut = () => {
-
+        this.props.checkout();
     }
     // ----------------------------------------------------------------------------------------
     
@@ -133,6 +133,9 @@ const mapDispatchToProps = (dispatch)=> {
         },
         remove: (position) => {
             dispatch(RemoveProduct(position));
+        },
+        checkout: () => {
+            dispatch(CheckOut());
         }
     }
 }

@@ -1,5 +1,6 @@
-import { GET_CART} from './type';
+import { GET_CART ,CHECK_OUT,NEED_LOG_IN} from './type';
 import { api } from '../helpers/API';
+import jwt_decode from 'jwt-decode';
 
 export const AddToCart = (cart) => dispatch =>{
     // Cart = List Product
@@ -47,6 +48,29 @@ export const RemoveProduct = (position) => dispatch =>{
     list.splice(position,1);
     localStorage.setItem('listproduct', JSON.stringify(list));
     dispatch(GetCartFromLocal());
+}
+
+export const CheckOut = () => dispatch => {
+    const checkJWT = localStorage.getItem('jwtToken');
+    const list = JSON.parse(localStorage.getItem('listproduct'));
+    if(!checkJWT){
+        dispatch({
+            type:NEED_LOG_IN,
+            payload: {
+                checkout:true,
+                listproduct:list
+            }
+        })
+    }
+    else{
+        const userinfo = jwt_decode(checkJWT);
+        if(list){
+            for(var i=0; i<list.length;++i){
+                list[i].userID = userinfo.id;
+            }
+        }
+        console.log(userinfo);
+    }   
 }
 
 export const GetCartFromLocal = () => dispatch =>{
