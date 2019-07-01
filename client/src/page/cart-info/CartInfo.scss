@@ -1,0 +1,175 @@
+@import '../../index.scss';
+
+#CartPage{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    @include wordfont;
+    p{
+        display:block;
+        width: 85%;
+        padding: 37px 0px;
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 1.33;
+        color: #202124;
+    }
+    .Page-content{
+        width: 85%;
+        display:flex;
+        justify-content: space-between;
+        padding-bottom: 40px;
+        .cart-table{
+            width: 63.73%;
+            table{
+                border-collapse:collapse;
+            }
+            .productShow{
+                border-top: 1px solid #979797;
+            }
+            tr th{
+                width: 3.2%;
+                font-size: 14px;
+                font-weight: bold;
+                line-height: 1.57;
+                color:#202124;
+                padding-right:10.67%;
+                padding-bottom: 10px;
+                &:first-child{
+                    width: 100%;
+                    text-align: left;
+                }
+                &:last-child{
+                    padding-right:0;
+                }
+            }
+            tr td{
+                width: 3.2%;
+                text-align: center;
+                padding-right:10.67%;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                &:first-child{
+                    width: 100%;
+                    text-align: left;
+                    display:flex;
+                }
+                &:last-child{
+                    font-size: 16px;
+                    font-weight: 500;
+                    color: #202124;
+                    padding-right:0;
+                }
+            }
+            .InfoProduct{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                margin-left: 20px;
+            }
+            .images{
+                width:80px;
+                height: 113px;
+            }
+            .color{
+                width:30px;
+                height: 30px;
+                margin-left: 3px;
+                border-radius: 15px;
+            }   
+            .size{
+                font-size: 18px;
+                font-weight: 500;
+                color:#202124;
+            }
+
+            .quantity-picker{
+                display:flex;
+                height: 42px;
+                font-weight: 500;
+                font-size: 14px;
+                border: 1px solid #d4d3d3;
+                .decrease{
+                    height:24px;
+                    width: 24px;
+                    margin: 9px 8px;
+                    text-align: center;
+                }
+                .quantity-pro{
+                    height:24px;
+                    width: 24px;
+                    margin: 9px 5px;
+                    text-align: center;
+                }
+                .increase{
+                    height:24px;
+                    width: 24px;
+                    margin: 9px 8px;
+                    text-align: center;
+                }
+            }
+            .Action{
+                display:flex;
+                justify-content: space-between;
+                div{
+                    font-size: 12px;
+                    line-height: 1.83;
+                    color: #202124;
+                    cursor: pointer;
+                }
+                .line{
+                    border: 0.5px solid #979797;
+                    cursor: default;
+                }
+            }
+            .productname{
+                font-size: 14px;
+                font-weight: 500;
+                color: #202124;
+                width: 96px;
+            }
+        }
+        .checkout-bar{
+            width: 330px;
+            font-size: 14px;
+            line-height: 1.57;
+            color: #202124;
+            .Price-Info{
+                height: 148px;
+                width: 330px;
+                background-color: #f9f9f9;
+                padding: 30px 30px 25px;
+                margin:10px 0px;
+                .line{
+                    border: solid 0.5px #979797;
+                    margin-top:15px;
+                    margin-bottom: 5px;
+                }
+                .price-row{
+                    display: flex;
+                    justify-content: space-between;
+                    font-weight: 500;
+                    &:last-child{
+                        font-weight: bold;
+                        div{
+                            &:first-child{
+                                font-size:16px;
+                               
+                            }
+                        }
+                    }
+                }
+            }
+            button{
+                box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
+                background-color: #ff5f6d;
+                color: white;
+                font-size:16px;
+                font-weight: bold;
+                width: 330px;
+                height: 50px;
+                border: none;
+            }
+        }
+    }
+}

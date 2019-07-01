@@ -55,7 +55,7 @@ class cart extends Component {
                             </div>
                         </div>
                     </div>
-                    <Link className="viewcart-button">View cart</Link>
+                    <Link to="/cart-info" className="viewcart-button">View cart</Link>
                 </div>
             </div> 
         )

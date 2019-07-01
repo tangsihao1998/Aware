@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { GET_ERRORS , SET_CURRENT_USER , LOG_OUT} from './type';
 import { api } from '../helpers/API';
 import { setAuthToken }  from '../helpers/API';

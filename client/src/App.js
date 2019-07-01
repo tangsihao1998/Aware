@@ -5,6 +5,7 @@ import Footer from './component/footer/footer'
 import Product from './page/product/product'
 import Homepage from './page/homepage/homepage'
 import ProductInfo from './page/product-info/product-info'
+import CartInfo from './page/cart-info/CartInfo'
 import { BrowserRouter as Router,Route,Switch }  from 'react-router-dom'
 import { withRouter } from 'react-router'
 
@@ -35,6 +36,7 @@ class App extends React.Component{
                 <Route exact path='/' component={Homepage} />
                 <Route exact path='/product' component={Product} />
                 <Route exact path='/product/:product_id' component={ProductInfo} />
+                <Route exact path='/cart-info' component={CartInfo}/>
               </Switch>
             </Scroll>
           <Footer />
