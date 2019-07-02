@@ -69,6 +69,14 @@ export const CheckOut = () => dispatch => {
                 list[i].userID = userinfo.id;
             }
         }
+        api.post('/cart/add', list)
+        .then(res => {console.log(res.data)})
+        .catch(err => {
+            // dispatch({
+            //     // type: GET_ERRORS,
+            //     // payload: err.response.data.error
+            // });
+        });
         console.log(userinfo);
     }   
 }

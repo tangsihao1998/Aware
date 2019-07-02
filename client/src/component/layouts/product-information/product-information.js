@@ -35,22 +35,25 @@ class productinformation extends Component {
     // --------------------------------------------------------------------------------------------------------------
 
     handleADDTOCART = () =>{
+        
         const {_id,price,name,imgs} = this.props.product;
         const {quantity} = this.state;
-        const cartProduct = {
-            productID: _id,
-            // Change On Screen
-            color:'Red',
-            size:'S',
-            // Static
-            quantity:quantity,
-            price: price,
-            name: name,
-            img: imgs[0],
-            userID:''
+        if(quantity > 0){
+            const cartProduct = {
+                productID: _id,
+                // Change On Screen
+                color:'Red',
+                size:'S',
+                // Static
+                quantity:quantity,
+                price: price,
+                name: name,
+                img: imgs[0],
+                userID:''
+            }
+    
+            this.props.Addtocart(cartProduct);
         }
-
-        this.props.Addtocart(cartProduct);
     }   
     // --------------------------------------------------------------------------------------------------------------
 

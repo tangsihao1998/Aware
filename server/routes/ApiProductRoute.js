@@ -89,8 +89,6 @@ router.post('/add', async (req,res) => {
     for(var i = 0; i < CategoryID.length; ++i ){
         let categoryupdate = await category_controller.UpdateProductID(newproduct._id,CategoryID[i]);
     }
-
-    console.log(newproduct)
     if(newproduct){
        return res.json(newproduct); 
     }
