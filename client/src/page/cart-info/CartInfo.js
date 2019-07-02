@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import {connect} from 'react-redux';
-import {GetCartFromLocal,IncreaseQuantity,DecreaseQuantity,RemoveProduct,CheckOut} from '../../actions/cart-action';
+import {GetCartFromLocal,IncreaseQuantityLocal,DecreaseQuantityLocal,RemoveProductLocal,CheckOut} from '../../actions/cart-action';
 import './CartInfo.scss'
 
 class cartinfo extends Component {
@@ -17,17 +17,17 @@ class cartinfo extends Component {
     // Handle Decrease Increase Quantity Of Product
     handleDecreaseQuantity = (index) => {
         if(this.props.listproduct[index].quantity > 1){
-               this.props.decreaseQuantity(index);
+               this.props.decreaseQuantityLocal(index);
         }
     }
 
     handleIncreaseQuantity = (index) => {
-        this.props.increaseQuantity(index);
+        this.props.increaseQuantityLocal(index);
     }
     // ----------------------------------------------------------------------------------------
     // Handle Remove Product
     handleRemoveProduct = (index) =>{
-        this.props.remove(index);
+        this.props.removeLocal(index,this.props.isLogin);
     }
     // ----------------------------------------------------------------------------------------
     // Handle Check Out
@@ -116,6 +116,7 @@ class cartinfo extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        isLogin: state.AuthReducer.isAuthenticated,
         listproduct: state.CartReducer.listproduct,
     }
 }
@@ -125,14 +126,14 @@ const mapDispatchToProps = (dispatch)=> {
         GetCartFromLocal: () => {
             dispatch(GetCartFromLocal());
         },
-        increaseQuantity: (position) =>{
-            dispatch(IncreaseQuantity(position));
+        increaseQuantityLocal: (position) =>{
+            dispatch(IncreaseQuantityLocal(position));
         },
-        decreaseQuantity: (position) =>{
-            dispatch(DecreaseQuantity(position));
+        decreaseQuantityLocal: (position) =>{
+            dispatch(DecreaseQuantityLocal(position));
         },
-        remove: (position) => {
-            dispatch(RemoveProduct(position));
+        removeLocal: (position,isLogin) => {
+            dispatch(RemoveProductLocal(position,isLogin));
         },
         checkout: () => {
             dispatch(CheckOut());

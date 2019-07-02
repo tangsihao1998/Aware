@@ -29,22 +29,27 @@ export const AddToCart = (cart) => dispatch =>{
     dispatch(GetCartFromLocal());
 } 
 
-export const IncreaseQuantity = (position) => dispatch =>{
+export const IncreaseQuantityLocal = (position) => dispatch =>{
     let list = JSON.parse(localStorage.getItem('listproduct'));
     list[position].quantity = list[position].quantity + 1;
     localStorage.setItem('listproduct', JSON.stringify(list));
     dispatch(GetCartFromLocal());
 }
 
-export const DecreaseQuantity = (position) => dispatch =>{
+export const DecreaseQuantityLocal = (position) => dispatch =>{
     let list = JSON.parse(localStorage.getItem('listproduct'));
     list[position].quantity = list[position].quantity - 1;
     localStorage.setItem('listproduct', JSON.stringify(list));
     dispatch(GetCartFromLocal());
 }
 
-export const RemoveProduct = (position) => dispatch =>{
+export const RemoveProductLocal = (position,isLogin) => dispatch =>{
     let list = JSON.parse(localStorage.getItem('listproduct'));
+    if(isLogin){
+        api.post('/cart/delete', list[position])
+        .then(res => {console.log(res.data)})
+        .catch(err => {});
+    }
     list.splice(position,1);
     localStorage.setItem('listproduct', JSON.stringify(list));
     dispatch(GetCartFromLocal());
@@ -71,23 +76,75 @@ export const CheckOut = () => dispatch => {
         }
         api.post('/cart/add', list)
         .then(res => {console.log(res.data)})
-        .catch(err => {
-            // dispatch({
-            //     // type: GET_ERRORS,
-            //     // payload: err.response.data.error
-            // });
-        });
+        .catch(err => {});
         console.log(userinfo);
     }   
 }
 
-export const GetCartFromLocal = () => dispatch =>{
+export const GetCartFromLocal = () =>{
     const products= JSON.parse(localStorage.getItem('listproduct'));
-    dispatch({
+    return{
         type:GET_CART,
         payload:{
             cartProduct: products,
         }
-    })
+    }
+}
+
+export const GetCartFromServer = () => dispatch =>{
+    const listLocal = JSON.parse(localStorage.getItem('listproduct'));
+    if(listLocal){
+        const checkJWT = localStorage.getItem('jwtToken');
+        const userinfo = jwt_decode(checkJWT);
+        for(var i=0; i<listLocal.length;++i){
+            listLocal[i].userID = userinfo.id;
+        }
+        api.post('/cart/add', listLocal)
+        .then(res => {})
+        .catch(err => {});
+    }
+    api.get('/cart').then(res=>{
+        // Create List
+        const list = res.data.listproduct;
+       
+        // Create List Product To Return again 
+        let listpro = [];
+        for(var i = 0; i<list.length ; ++i){
+            let production= {
+                userID: list[i].userID,
+                color:list[i].color,
+                size:list[i].size,
+                quantity:list[i].quantity,
+                price: list[i].productID.price,
+                name: list[i].productID.name,
+                img: list[i].productID.imgs[0],
+                productID: list[i].productID._id,
+            }
+            listpro.push(production);
+        }
+        localStorage.setItem('listproduct',JSON.stringify(listpro));
+        dispatch({
+            type:GET_CART,
+            payload:{
+                cartProduct: listpro,
+            }
+        })
+    }).catch(err => {
+        console.log(err);
+    });
+}
+
+export const UpdateQuantity = () => {
+    const listLocal = JSON.parse(localStorage.getItem('listproduct'));
+    if(listLocal){
+        const checkJWT = localStorage.getItem('jwtToken');
+        const userinfo = jwt_decode(checkJWT);
+        for(var i=0; i<listLocal.length;++i){
+            listLocal[i].userID = userinfo.id;
+        }
+        api.post('/cart/add', listLocal)
+        .then(res => {})
+        .catch(err => {});
+    }
 }
 

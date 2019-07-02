@@ -21,6 +21,15 @@ router.post('/add', passport.authenticate('jwt', { session: false }), async (req
     return res.json({listproduct:list});
 });
 
+router.get('/',passport.authenticate('jwt', { session: false }), async (req, res) => { 
+    let list = await CartController.GetCartUser(req.user._id);
+    return res.json({listproduct:list});
+});
+
+router.post('/delete',passport.authenticate('jwt', { session: false }), async (req, res) => { 
+    console.log(req.body)
+    let list = await CartController.DeleteCartProduct(req.body.productID,req.body.userID);
+});
 
 module.exports = router;
 

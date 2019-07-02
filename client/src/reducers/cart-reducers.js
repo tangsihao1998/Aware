@@ -1,6 +1,8 @@
 import {GET_CART,CHECK_OUT,NEED_LOG_IN} from '../actions/type';
 
-export default function(state = {listproduct:[],checkout:false}, action ) {
+let list = JSON.parse(localStorage.getItem('listproduct'));
+
+export default function(state = {listproduct:list,checkout:false}, action ) {
     switch(action.type) {
         case GET_CART:{
             return {

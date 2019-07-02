@@ -10,7 +10,8 @@ import appReducer from './reducers/reducer-index';
 import thunk from 'redux-thunk';
 import jwt_decode from 'jwt-decode';
 import {setAuthToken} from './helpers/API';
-import { setCurrentUser, logoutUser } from './actions/authentication';
+import { setCurrentUser} from './actions/authentication';
+import { GetCartFromLocal} from './actions/cart-action';
 // import './index.scss';
 // import { library } from '@fortawesome/fontawesome-svg-core'
 // import { faSearch, faShoppingCart,faChevronDown } from '@fortawesome/free-solid-svg-icons'

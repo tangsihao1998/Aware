@@ -1,6 +1,6 @@
 //Define a Models
 var Cart = require('../models/cart');
- 
+var ProductData = require('../models/products');
 let controller ={};
 
 // Add Product To Cart 
@@ -42,5 +42,31 @@ controller.UpdateQuantity = async (cart) => {
     }
 }
 
+controller.GetCartUser = async(userID) => {
+    try {
+        const list = await Cart.find({userID:userID}).populate({path:'productID',model: ProductData});
+        if(!list){
+            return false;
+        }
+        return list;
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+}
+
+controller.DeleteCartProduct = async(productID,userID) =>{
+    try {
+        const list = await Cart.findOneAndRemove({productID:productID,userID:userID});
+        console.log(list);
+        // if(!list){
+        //     return false;
+        // }
+        // return list;
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+}
 
 module.exports = controller;

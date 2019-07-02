@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import './cart.scss'
 
 import {connect} from 'react-redux';
-import {GetCartFromLocal} from '../../../actions/cart-action';
+import {GetCartFromLocal,GetCartFromServer,CheckOut,UpdateQuantity} from '../../../actions/cart-action';
 
 
 class cart extends Component {
@@ -33,10 +33,36 @@ class cart extends Component {
         })
     }
     componentDidMount(){
-        this.props.GetCartFromLocal();
+        console.log("componentDidMount",this.props.isLogin)
+        if(this.props.isLogin){
+            this.props.GetCartFromServer();
+        }
+        else{
+            this.props.GetCartFromLocal();
+        }
+        console.log("componentDidMount",this.props.listproduct)
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.isLogin !== prevProps.isLogin) {
+            if(this.props.isLogin){
+                this.props.GetCartFromServer();
+            }
+            else{
+                localStorage.removeItem('listproduct');
+                this.props.GetCartFromLocal();
+            }
+        }
+    }
+
+    componentWillUnmount(){
+        if(this.props.isLogin){
+            UpdateQuantity();
+        }
     }
 
     render() {
+        console.log(this.props);
         const {listproduct} = this.props;
         const {dropshow} = this.state;
         // Show Product From Local Storage
@@ -71,6 +97,7 @@ class cart extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        isLogin: state.AuthReducer.isAuthenticated,
         listproduct: state.CartReducer.listproduct,
     }
 }
@@ -80,6 +107,12 @@ const mapDispatchToProps = (dispatch)=> {
         GetCartFromLocal: () => {
             dispatch(GetCartFromLocal());
         },
+        GetCartFromServer: () => {
+            dispatch(GetCartFromServer());
+        },
+        checkout: () => {
+            dispatch(CheckOut());
+        }
     }
 }
 

@@ -35,7 +35,6 @@ class productinformation extends Component {
     // --------------------------------------------------------------------------------------------------------------
 
     handleADDTOCART = () =>{
-        
         const {_id,price,name,imgs} = this.props.product;
         const {quantity} = this.state;
         if(quantity > 0){
